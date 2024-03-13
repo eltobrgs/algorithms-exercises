@@ -1,0 +1,33 @@
+<mxfile host="app.diagrams.net" modified="2024-02-23T03:26:55.036Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="cBo1r2SvbD-Uxjwiirob" version="23.1.6" type="device">
+  <diagram name="Página-1" id="0yYFlRsd87lMlyghGRyJ">
+    <mxGraphModel dx="954" dy="727" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="_-QJPZIlCKgo2Ex2mkQS-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="_-QJPZIlCKgo2Ex2mkQS-1" target="_-QJPZIlCKgo2Ex2mkQS-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="414" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_-QJPZIlCKgo2Ex2mkQS-1" value="&lt;h1 style=&quot;line-height: 110%;&quot;&gt;inicio&lt;/h1&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="354" y="130" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="_-QJPZIlCKgo2Ex2mkQS-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="_-QJPZIlCKgo2Ex2mkQS-2" target="_-QJPZIlCKgo2Ex2mkQS-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_-QJPZIlCKgo2Ex2mkQS-2" value="N1, N2" style="shape=manualInput;whiteSpace=wrap;html=1;fontSize=37;" vertex="1" parent="1">
+          <mxGeometry x="325" y="250" width="177" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="_-QJPZIlCKgo2Ex2mkQS-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="_-QJPZIlCKgo2Ex2mkQS-4" target="_-QJPZIlCKgo2Ex2mkQS-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_-QJPZIlCKgo2Ex2mkQS-4" value="N1+N2" style="whiteSpace=wrap;html=1;fontSize=31;" vertex="1" parent="1">
+          <mxGeometry x="331" y="420" width="166" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="_-QJPZIlCKgo2Ex2mkQS-7" value="FIM" style="ellipse;whiteSpace=wrap;html=1;fontSize=36;" vertex="1" parent="1">
+          <mxGeometry x="321" y="570" width="186" height="140" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

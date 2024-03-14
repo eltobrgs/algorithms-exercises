@@ -3,7 +3,7 @@
 fib = [1, 1]
 
 # Calcular os próximos termos
-for i in range(2, 60):
+for i in range(2, 15):
     proxterm = fib[i-1] + fib[i-2]
     fib += [proxterm]
 
@@ -17,7 +17,7 @@ fib = [1, 1]
 '''
 # Calcular os próximos termos usando while
 i = 2
-while i < 60:
+while i < :
     proxterm = fib[i-1] + fib[i-2]
 
     fib += [proxterm]

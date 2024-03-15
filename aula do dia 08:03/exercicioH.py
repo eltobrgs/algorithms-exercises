@@ -4,7 +4,9 @@ while True:
     resultado= B**E  # Calcula a potência da base elevada ao expoente
     if E >=0 or B >=0:
         print(f"O resultado da operação é: {resultado}")
-    break 
+    else: 
+        print("Digite um número positivo")
+        break 
         
         
 

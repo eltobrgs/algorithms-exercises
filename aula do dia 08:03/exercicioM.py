@@ -1,15 +1,19 @@
-soma_total = 0  # Variável para armazenar a soma dos fatoriais
+'''#programa que lê dez valores e apresenta a soma desses valores e a media deles 
+soma=0
+for i in range(1,11):
+    valor=int(input("Digite o valor: "))
+    soma+=valor
+media=soma/10
+print("A soma dos valores é: ", soma)
+print("A media dos valores é: ", media)'''
 
-for K in range(10):  # Loop que executa 15 vezes
-    numero = int(input("Digite um número: "))  # Solicita ao usuário que digite um número e o converte para inteiro
-    fatorial = 1  # Variável para armazenar o fatorial do número
-
-    for i in range(1, numero + 1):  # Loop que calcula o fatorial do número
-        fatorial *= i  # Multiplica o fatorial pelo valor atual de i
-
-    soma_total += fatorial  # Adiciona o fatorial calculado à soma total
-
-print("A soma dos fatoriais é:", soma_total)  # Imprime a soma dos fatoriais
-
-result = (soma_total)/K
-print(result)
+#programa que lê dez valores e apresenta a soma desses valores e a media deles 
+soma=0
+cont=1
+while cont<=10:
+    valor=int(input("Digite o valor: "))
+    soma+=valor
+    cont+=1
+media=soma/10
+print("A soma dos valores é: ", soma)
+print("A media dos valores é: ", media)

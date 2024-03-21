@@ -1,11 +1,8 @@
-q = 1
-g=0
-while q <= 64:
-    i=1 
-    g=(2**q)-1
-    s=0
-    while i<=g:
-        s+=i
-        i+=1
-    print("O somatório de {} grão(s) é {}".format(g, s))
-    q+=1
+#calcula a somatoria dos grãos de trigo de um tabuleiro de xadres com while
+cont=1
+soma=0
+while cont<=64:
+    soma=(2**cont)-1
+    print(soma)
+    cont+=1
+print(") total de grãos de trigo é ", soma)

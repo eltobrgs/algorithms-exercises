@@ -7,5 +7,3 @@ print("O resultado inteiro da divisão é:", c-1)
 
 
 
-
-    

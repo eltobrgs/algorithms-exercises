@@ -1,14 +1,18 @@
 import random
 
 #bubblesort
+
 a = [random.randint(0,100) for i in range(10)]
+print('Sem ordenaçao:', a)
 
 for i in range (len(a)-1):
     for j in range (1+i, len(a)):
         if a[i]>a[j]:
-            a[i], a[j]= a[j], a[i]
-            
-print(a)
+            a[i], a[j]= a[j], a[i] 
+
+print('Ordernado com bubble sort:', a)
+
+
 
 '''O código fornecido implementa o algoritmo de ordenação Bubble Sort. Vou explicar passo a passo o que está acontecendo no código:
 

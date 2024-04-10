@@ -9,3 +9,6 @@ for i in range(len(a)-1):  # Loop externo para percorrer a lista
 print('Ordenado com bubble sort:', a)  # Imprime a lista ordenada usando o Bubble Sort
 
 print('Ordenado em ordem decrescente com slice:', a[::-1])  # Imprime a lista ordenada em ordem decrescente usando o slice
+
+'''a.sort(reverse=True)
+print('Ordenado em ordem decrescente com sort reverse:', a ) # Imprime a lista ordenada em ordem crescente usando o sort reverse'''

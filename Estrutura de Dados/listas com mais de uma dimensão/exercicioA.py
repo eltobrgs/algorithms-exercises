@@ -10,7 +10,8 @@ for i in range(3):
 
 print(a)
 print(b)
-print(c)
+for linha in c:
+    print(linha)
 
 ''''
 #jeito do professor 

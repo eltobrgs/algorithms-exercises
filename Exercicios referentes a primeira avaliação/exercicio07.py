@@ -1,7 +1,8 @@
 # Calcular a moda
 contador = {}
-for i in range(20):
-    numero = int(input("Digite um número inteiro: "))
+lista_numeros = list(range(1, 21))
+
+for numero in lista_numeros:
     if numero in contador:
         contador[numero] += 1
     else:
@@ -17,12 +18,7 @@ for numero, count in contador.items():
 print("A moda dos elementos na lista é:", moda)
 
 # Calcular a mediana
-lista_ordenada = []
-for i in range(20):
-    numero = int(input("Digite um número inteiro: "))
-    lista_ordenada.append(numero)
-
-lista_ordenada.sort()
+lista_ordenada = sorted(lista_numeros)
 tamanho = len(lista_ordenada)
 
 if tamanho % 2 == 0:
@@ -36,10 +32,6 @@ else:
 print("A mediana dos elementos na lista é:", mediana)
 
 # Calcular a média
-soma = 0
-for i in range(20):
-    numero = int(input("Digite um número inteiro: "))
-    soma += numero
-
-media = soma / 20
+soma = sum(lista_numeros)
+media = soma / len(lista_numeros)
 print("A média dos elementos na lista é:", media)

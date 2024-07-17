@@ -9,3 +9,5 @@ for i in fibonacci:
         for j in range(1,i+1):
             fatorial*=j
         print(fatorial)
+
+        

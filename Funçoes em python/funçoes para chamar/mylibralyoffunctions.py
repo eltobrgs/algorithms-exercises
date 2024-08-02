@@ -58,8 +58,15 @@ def eh_o_menor(numero, lista):
         return True
     else:
         return False  
-    
-    
+
+
+# Função para calcular o tamanho de uma lista de números sem usar funções internas do Python
+def calcular_tamanho_lista(lista):
+    tamanho = 0
+    for i in lista:
+        tamanho += 1
+    return tamanho
+
 # Função para calcular area e peprimetro de um quadrilatero
 def retangulo(lado1, lado2):
     area = lado1 * lado2
@@ -95,3 +102,11 @@ def pentagono(lado, apotema):  # apotema é a altura do pentágono
 def hexagono(lado):
     area = (3 * lado ** 2 * 3 ** 0.5) / 2
     return area
+
+#funçao para calcular a media de um numeros em uma lista
+def calcular_media(numeros):
+    soma=soma_dos_digitos(numeros)
+    media=soma/calcular_tamanho_lista(numeros)
+    return media
+
+

@@ -37,6 +37,13 @@ def soma_dos_digitos(numero):
         numero //= 10
     return soma
 
+# Função para calcular a soma de um números em uma lista
+def calcular_soma(numeros):
+    soma = 0
+    for num in numeros:
+        soma += num
+    return soma
+
 # Função para verificar se um número é o maior de uma lista
 def eh_o_maior(numero, lista):
     maior = lista[0]
@@ -105,7 +112,7 @@ def hexagono(lado):
 
 #funçao para calcular a media de um numeros em uma lista
 def calcular_media(numeros):
-    soma=soma_dos_digitos(numeros)
+    soma=calcular_soma(numeros)
     media=soma/calcular_tamanho_lista(numeros)
     return media
 

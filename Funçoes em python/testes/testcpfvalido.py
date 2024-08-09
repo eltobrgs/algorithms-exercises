@@ -1,4 +1,3 @@
-
 def cpfvalido(cpf):
     # Verifica se o CPF tem 11 dígitos
     if len(cpf) != 11 or not cpf.isdigit():

@@ -8,3 +8,7 @@ def eh_o_maior(numero, lista):
         return True
     else:
         return False
+
+# Teste para a função eh_o_maior
+print(eh_o_maior(10, [1, 5, 10]))  # Resultado esperado: True
+print(eh_o_maior(5, [1, 5, 10]))   # Resultado esperado: False

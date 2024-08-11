@@ -1,5 +1,3 @@
-import math  # Importa o módulo math para usar funções matemáticas
-
 # Definição das operações básicas
 
 def soma(a, b):
@@ -20,7 +18,7 @@ def divisao(a, b):
 # Funções para cálculos geométricos
 
 def hipotenusa(cateto1, cateto2):
-    return math.sqrt(cateto1**2 + cateto2**2)
+    return (cateto1**2 + cateto2**2) ** 0.5
 
 def area_triangulo(base, altura):
     return (base * altura) / 2
@@ -32,10 +30,10 @@ def area_retangulo(base, altura):
     return base * altura
 
 def area_circulo(raio):
-    return math.pi * raio**2
+    return 3.14159 * raio**2
 
 def circunferencia(raio):
-    return 2 * math.pi * raio
+    return 2 * 3.14159 * raio
 
 # Exibe o menu de opções
 
@@ -93,3 +91,4 @@ elif opcao == 10:
     print("Circunferência do círculo:", circunferencia(raio))
 else:
     print("Opção inválida.")
+

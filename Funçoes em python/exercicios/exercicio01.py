@@ -1,94 +1,41 @@
-# Definição das operações básicas
-
-def soma(a, b):
-    return a + b
-
-def subtracao(a, b):
-    return a - b
-
-def multiplicacao(a, b):
-    return a * b
-
-def divisao(a, b):
-    if b != 0:
-        return a / b
+def cpfvalido(cpf):
+    # Verifica se o CPF tem 11 dígitos
+    if len(cpf) != 11 or not cpf.isdigit():
+        return "CPF inválido."
     else:
-        return "Erro: Divisão por zero."
+        # Converte o CPF em uma lista de inteiros
+        cpf = [int(digit) for digit in cpf]
 
-# Funções para cálculos geométricos
+        # Verifica se todos os caracteres são dígitos
+        is_valid = True
+        for digit in cpf:
+            if digit < 0 or digit > 9:
+                is_valid = False
+                break
 
-def hipotenusa(cateto1, cateto2):
-    return (cateto1**2 + cateto2**2) ** 0.5
+        if is_valid:
+            # Calcula o primeiro dígito verificador
+            soma1 = 0
+            for i in range(9):
+                soma1 += cpf[i] * (10 - i)
+            digito1 = (soma1 * 10 % 11) % 10
 
-def area_triangulo(base, altura):
-    return (base * altura) / 2
+            # Calcula o segundo dígito verificador
+            soma2 = 0
+            for i in range(10):
+                soma2 += cpf[i] * (11 - i)
+            digito2 = (soma2 * 10 % 11) % 10
 
-def area_quadrado(lado):
-    return lado**2
+            # Verifica se os dígitos calculados são iguais aos fornecidos
+            if digito1 == cpf[9] and digito2 == cpf[10]:
+                return "CPF válido."
+            else:
+                return "CPF inválido."
+        else:
+            return "CPF inválido."
 
-def area_retangulo(base, altura):
-    return base * altura
 
-def area_circulo(raio):
-    return 3.14159 * raio**2
+# Pergunta o CPF ao usuário
+cpf = input("Digite o CPF (somente números): ")
 
-def circunferencia(raio):
-    return 2 * 3.14159 * raio
-
-# Exibe o menu de opções
-
-print("Calculadora Matemática")
-print("1 - Soma")
-print("2 - Subtração")
-print("3 - Multiplicação")
-print("4 - Divisão")
-print("5 - Calcular Hipotenusa")
-print("6 - Calcular Área do Triângulo")
-print("7 - Calcular Área do Quadrado")
-print("8 - Calcular Área do Retângulo")
-print("9 - Calcular Área do Círculo")
-print("10 - Calcular Circunferência do Círculo")
-
-# Solicita a escolha da operação ao usuário
-
-opcao = int(input("Escolha uma operação (1-10): "))
-
-# Realiza a operação escolhida pelo usuário
-
-if opcao in range(1, 5):
-    num1 = float(input("Digite o primeiro número: "))
-    num2 = float(input("Digite o segundo número: "))
-
-    if opcao == 1:
-        print("Resultado:", soma(num1, num2))
-    elif opcao == 2:
-        print("Resultado:", subtracao(num1, num2))
-    elif opcao == 3:
-        print("Resultado:", multiplicacao(num1, num2))
-    elif opcao == 4:
-        print("Resultado:", divisao(num1, num2))
-        
-elif opcao == 5:
-    cateto1 = float(input("Digite o comprimento do primeiro cateto: "))
-    cateto2 = float(input("Digite o comprimento do segundo cateto: "))
-    print("Hipotenusa:", hipotenusa(cateto1, cateto2))
-elif opcao == 6:
-    base = float(input("Digite o comprimento da base do triângulo: "))
-    altura = float(input("Digite a altura do triângulo: "))
-    print("Área do triângulo:", area_triangulo(base, altura))
-elif opcao == 7:
-    lado = float(input("Digite o comprimento do lado do quadrado: "))
-    print("Área do quadrado:", area_quadrado(lado))
-elif opcao == 8:
-    base = float(input("Digite o comprimento da base do retângulo: "))
-    altura = float(input("Digite a altura do retângulo: "))
-    print("Área do retângulo:", area_retangulo(base, altura))
-elif opcao == 9:
-    raio = float(input("Digite o raio do círculo: "))
-    print("Área do círculo:", area_circulo(raio))
-elif opcao == 10:
-    raio = float(input("Digite o raio do círculo: "))
-    print("Circunferência do círculo:", circunferencia(raio))
-else:
-    print("Opção inválida.")
-
+print(cpfvalido(cpf))

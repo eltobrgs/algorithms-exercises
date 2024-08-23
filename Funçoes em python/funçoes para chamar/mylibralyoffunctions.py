@@ -19,6 +19,13 @@ def fatorial(numero):
         resultado *= i
     return resultado
 
+# calcula fibboacci
+def calcular_fibonacci(n):
+    fibonacci = [0, 1]  # Inicializa a sequência com os dois primeiros números
+    for i in range(2, n):
+        fibonacci.append(fibonacci[i-1] + fibonacci[i-2])  # Calcula o próximo número da sequência
+    return fibonacci
+
 # Função para verificar se um número é primo
 def eh_primo(numero):
     if numero < 2:

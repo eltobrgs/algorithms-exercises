@@ -13,6 +13,8 @@ def fibonacci_iterativa(n):
     return a
 
 #Função recursiva para calcular o n-ésimo número de Fibonacci
+
+
 def fibonacci_recursiva(n):
     if n <= 1:
         return n

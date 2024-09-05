@@ -22,7 +22,7 @@ def cadastrar_medico():
     nome = simpledialog.askstring("Cadastrar Médico", "Digite o nome do médico:")
     especialidade = simpledialog.askstring("Cadastrar Médico", "Digite a especialidade:")
     credencial = simpledialog.askstring("Cadastrar Médico", "Digite a credencial do médico:")
-    limite = simpledialog.askinteger("Cadastrar Médico", "Digite o limite de atendimentos por dia:")
+    limite = simpledialog.askinteger("Cadastrar Médico", "Digite o limite de atendimentos por dia:(maximo 5)")
     
     if any(medico['credencial'] == credencial for medico in lista_medicos):
         messagebox.showerror("Erro", "Médico já cadastrado!")

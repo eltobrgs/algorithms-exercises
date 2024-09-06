@@ -81,8 +81,8 @@ def listar_medicos():
     for medico in lista_medicos:
 
         ''' O método .index(medico) percorre a lista internamente para encontrar o índice, 
-        o que pode ser custoso se a lista for grande. Uma alternativa seria usar um enumerate, que atribui o índice automaticamente:
-        o método .index(medico) retorna o índice do médico atual dentro da lista lista_medicos.'''
+        o que pode ser custoso se a lista for grande. Uma alternativa seria usar um enumerate, que atribui 
+        o índice automaticamente: o método .index(medico) retorna o índice do médico atual dentro da lista lista_medicos.'''
 
         indice = lista_medicos.index(medico) + 1 
         print(f" {indice} - Médico: {medico['nome']}, Especialidade: {medico['especialidade']}")

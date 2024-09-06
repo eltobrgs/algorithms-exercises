@@ -12,10 +12,16 @@ def cpf_valido(cpf):
         return False
     else:
         cpf = [int(digit) for digit in cpf]
-        soma1 = sum(cpf[i] * (10 - i) for i in range(9))
+        soma1 = 0
+        for i in range(9):
+            soma1 += cpf[i] * (10 - i)
         digito1 = (soma1 * 10 % 11) % 10
-        soma2 = sum(cpf[i] * (11 - i) for i in range(10))
+
+        soma2 = 0
+        for i in range(10):
+            soma2 += cpf[i] * (11 - i)
         digito2 = (soma2 * 10 % 11) % 10
+
         return digito1 == cpf[9] and digito2 == cpf[10]
 
 def cadastrar_medico():
@@ -24,9 +30,10 @@ def cadastrar_medico():
     credencial = simpledialog.askstring("Cadastrar Médico", "Digite a credencial do médico:")
     limite = simpledialog.askinteger("Cadastrar Médico", "Digite o limite de atendimentos por dia:(maximo 5)")
     
-    if any(medico['credencial'] == credencial for medico in lista_medicos):
-        messagebox.showerror("Erro", "Médico já cadastrado!")
-        return
+    for medico in lista_medicos:
+        if medico['credencial'] == credencial:
+            messagebox.showerror("Erro", "Médico já cadastrado!")
+            return
     
     medico = {'nome': nome, 'especialidade': especialidade, 'credencial': credencial, 'limite': limite}
     lista_medicos.append(medico)
@@ -36,7 +43,9 @@ def listar_medicos():
     if not lista_medicos:
         messagebox.showinfo("Lista de Médicos", "Nenhum médico cadastrado!")
     else:
-        medicos = "\n".join([f"{i + 1}. {medico['nome']} - {medico['especialidade']}" for i, medico in enumerate(lista_medicos)])
+        medicos = ""
+        for i, medico in enumerate(lista_medicos):
+            medicos += f"{i + 1}. {medico['nome']} - {medico['especialidade']}\n"
         messagebox.showinfo("Lista de Médicos", medicos)
 
 def excluir_medico():
@@ -57,9 +66,10 @@ def cadastrar_paciente():
         messagebox.showerror("Erro", "CPF inválido!")
         return
     
-    if any(paciente['cpf'] == cpf for paciente in lista_pacientes):
-        messagebox.showerror("Erro", "Paciente já cadastrado!")
-        return
+    for paciente in lista_pacientes:
+        if paciente['cpf'] == cpf:
+            messagebox.showerror("Erro", "Paciente já cadastrado!")
+            return
     
     paciente = {'nome': nome, 'cpf': cpf, 'email': email}
     lista_pacientes.append(paciente)
@@ -69,7 +79,9 @@ def listar_pacientes():
     if not lista_pacientes:
         messagebox.showinfo("Lista de Pacientes", "Nenhum paciente cadastrado!")
     else:
-        pacientes = "\n".join([f"{i + 1}. {paciente['nome']} - {paciente['cpf']}" for i, paciente in enumerate(lista_pacientes)])
+        pacientes = ""
+        for i, paciente in enumerate(lista_pacientes):
+            pacientes += f"{i + 1}. {paciente['nome']} - {paciente['cpf']}\n"
         messagebox.showinfo("Lista de Pacientes", pacientes)
 
 def excluir_paciente():
@@ -103,7 +115,12 @@ def agendar_consulta():
     dia = simpledialog.askstring("Agendar Consulta", "Digite o dia da consulta:")
     hora = simpledialog.askstring("Agendar Consulta", "Digite a hora da consulta:")
     
-    if len([c for c in lista_consultas if c['medico'] == medico['nome'] and c['dia'] == dia]) < medico['limite']:
+    consultas_medico = []
+    for consulta in lista_consultas:
+        if consulta['medico'] == medico['nome'] and consulta['dia'] == dia:
+            consultas_medico.append(consulta)
+
+    if len(consultas_medico) < medico['limite']:
         consulta = {'paciente': paciente['nome'], 'medico': medico['nome'], 'dia': dia, 'hora': hora}
         lista_consultas.append(consulta)
         messagebox.showinfo("Sucesso", "Consulta agendada com sucesso!")
@@ -114,7 +131,9 @@ def listar_consultas():
     if not lista_consultas:
         messagebox.showinfo("Lista de Consultas", "Nenhuma consulta agendada!")
     else:
-        consultas = "\n".join([f"{i + 1}. Paciente: {consulta['paciente']}, Médico: {consulta['medico']}, Dia: {consulta['dia']}, Hora: {consulta['hora']}" for i, consulta in enumerate(lista_consultas)])
+        consultas = ""
+        for i, consulta in enumerate(lista_consultas):
+            consultas += f"{i + 1}. Paciente: {consulta['paciente']}, Médico: {consulta['medico']}, Dia: {consulta['dia']}, Hora: {consulta['hora']}\n"
         messagebox.showinfo("Lista de Consultas", consultas)
 
 def excluir_consulta():

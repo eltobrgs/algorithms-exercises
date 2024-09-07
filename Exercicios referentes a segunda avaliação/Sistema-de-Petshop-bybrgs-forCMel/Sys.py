@@ -1,6 +1,6 @@
 import Funcs
 
-def main(): #função principal que chama as outras funções do sistema, é a função que inicia o sistema e a que controla o fluxo do sistema, a fução main é a função principal de um programa e geralmente a que é chamada para iniciar a execução do programa
+def main(): #função p9rincipal que chama as outras funções do sistema, é a função que inicia o sistema e a que controla o fluxo do sistema, a fução main é a função principal de um programa e geralmente a que é chamada para iniciar a execução do programa
     while True:
         try:
             Funcs.menu()

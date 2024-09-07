@@ -6,10 +6,10 @@ def main(): #função principal que chama as outras funções do sistema, é a f
             Funcs.menu()
             option = input('Digite a opção desejada: ')
 
-            if option == '1': #se a opção for 1, chama a função de catalogar serviço
-                Funcs.catalogar_serv()
-            elif option == '2': #se a opção for 2, chama a função de listar serviços
+            if option == '1': #se a opção for 1, chama a função de listar serv
                 Funcs.listar_serv()
+            elif option == '2': #se a opção for 2, chama a função de cadastrar novos serviços
+                Funcs.catalogar_serv()
             elif option == '3':
                 Funcs.cadastrar_pet() #... e assim por diante
             elif option == '4':

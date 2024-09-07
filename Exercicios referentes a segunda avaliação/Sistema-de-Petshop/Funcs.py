@@ -1,11 +1,13 @@
 def menu():
     print('SEJA BEM VINDO AO SISTEMA DE PETSHOP')
-    print('1 - catalogo de serviços')
-    print('2 - cadastrar Pet')
-    print('3 - agendar serviço')
-    print('4 - cancelar serviço')
-    print('5 - listar serviços')
-    print('0 - sair')
+    print('1 - catalogo de serviços disponiveis')
+    print('2 - cadastrar serviço')
+    print('3 - cadastrar pet')
+    print('4 - listar pets')
+    print('5 - agendar serviço')
+    print('6 - listar agendamentos')
+    print('7 - cancelar serviço')
+    print('0 - sair do sistema')
 
 # essa lista vai armazenar os serviços cadastrados, no caso os serviços que o petshop oferece para os clientes, como banho, tosa, etc
 # a lista contem dicionarios com os seguintes campos: serv, preco, descricao

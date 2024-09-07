@@ -32,15 +32,22 @@ def catalogar_serv():
     lista_serv.append(serv)
     # o metodo append adiciona um item a lista, no caso o dicionario serv
     print('Serviço cadastrado com sucesso!')
+    print('lista atualizada de serviços:')
+    listar_serv()
 
 
 def listar_serv():
-    print('Listando serviços...')
-    indice = lista_serv.index(serv) + 1
-    # essa varivel indice vai ser usada para mostrar o indice do serviço na lista de serviços, o indice é o numero do serviço na lista, eu adicionar +1 para começar do 1 e não do 0, ja que na vida real não existe o indice 0
-    for serv in lista_serv:
-        print(f"{indice}- Serviço: {serv['serv']}, Preço: {serv['preco']}, Descrição: {serv['descricao']}")
+    # essa função vai listar os serviços cadastrados, ela vai percorrer a lista de serviços e mostrar o nome do serviço, o preço e a descrição
+    if len(lista_serv) == 0:
+        print('Nenhum serviço cadastrado!')
+        return
+    else:
+        print('Listando serviços...')
+        for serv in lista_serv:
+            indice = lista_serv.index(serv) + 1
+            print(f"{indice}- Serviço: {serv['serv']}, Preço: {serv['preco']}, Descrição: {serv['descricao']}")
 
+    # essa varivel indice vai ser usada para mostrar o indice do serviço na lista de serviços, o indice é o numero do serviço na lista, eu adicionar +1 para começar do 1 e não do 0, ja que na vida real não existe o indice 0
 
 def cadastrar_pet():
     # exatamente a mesma logica do cadastro de serviço, só que agora para o cadastro de pets
@@ -54,16 +61,21 @@ def cadastrar_pet():
 
 def listar_pets():
     # extamente a mesma logica do listar serviços, só que agora para listar os pets
-    print('Listando pets...')
-    for pet in lista_pets:
-        indice = lista_pets.index(pet) + 1
-        print(f" {indice}- Pet: {pet['nome']}, Raça: {pet['raca']}, Idade: {pet['idade']}")
+    if len(lista_pets) == 0:
+        print('Nenhum pet cadastrado!')
+        return
+    else:
+        print('Listando pets...')
+        for pet in lista_pets:
+            indice = lista_pets.index(pet) + 1
+            print(f" {indice}- Pet: {pet['nome']}, Raça: {pet['raca']}, Idade: {pet['idade']}")
 
 def excluir_pet():
     listar_pets()
     pet_exclude = int(input('Digite o indice do pet que deseja excluir: '))
     lista_pets.pop(pet_exclude - 1) #.pop é um metodo que remove o item de uma lista dado o seu indice, o indice é passado como argumento para o metodo .pop 
     print('Pet excluido com sucesso!')
+    
 
 def agendar_servico():
     listar_pets()
@@ -105,10 +117,14 @@ def agendar_servico():
 
 
 def listar_agendamentos():
-    print('Listando agendamentos...')
-    for agendamento in lista_agendamentos:
-        indice = lista_agendamentos.index(agendamento) + 1
-        print(f"{indice}- Pet: {agendamento['pet']}, Serviço: {agendamento['serv']}, Data: {agendamento['data']}, Hora: {agendamento['hora']}")
+    if len(lista_agendamentos) == 0:
+        print('Nenhum agendamento realizado!')
+        return
+    else :
+        print('Listando agendamentos...')
+        for agendamento in lista_agendamentos:
+            indice = lista_agendamentos.index(agendamento) + 1
+            print(f"{indice}- Pet: {agendamento['pet']}, Serviço: {agendamento['serv']}, Data: {agendamento['data']}, Hora: {agendamento['hora']}")
 
 def cancelar_servico():
     listar_agendamentos()

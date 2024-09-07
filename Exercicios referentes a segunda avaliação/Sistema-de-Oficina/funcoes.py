@@ -139,11 +139,17 @@ def listar_carros():
 
 
 # Função para gerar o relatório de um carro
+# Função para gerar o relatório de um carro
 def relatorio():
+    # Solicita ao usuário o índice do carro que deseja ver o relatório
     print('De qual carro deseja ver o relatório?')
     carro_indice = int(input('Digite o índice do carro que deseja ver o relatório: '))
+
+    # Verifica se o índice fornecido é válido
     if 0 < carro_indice <= len(carros_na_oficina):
+        # Obtém o carro correspondente ao índice fornecido
         carro = carros_na_oficina[carro_indice - 1]
+
         # Exibe as informações do carro e do serviço realizado
         print(f"Carro: {carro['modelo']}, Placa: {carro['placa']}, Ano: {carro['ano']}, Cor: {carro['cor']}, Cliente: {carro['cliente']}, Descrição: {carro['descricao']}, Serviço: {carro['servico']}, Preço do serviço: {carro['preço do serviço']}")
         print('Relatório gerado com sucesso!')

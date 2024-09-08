@@ -60,29 +60,35 @@ def cadastrar_cliente():
     else:
         # Cria um dicionário com os dados do cliente e adiciona à lista de clientes
         cliente = {'nome': nome, 'email': email, 'telefone': telefone, 'cpf': cpf}
+        # usa o método append para adicionar o dicionario que contem as informaçoes do cliente à lista de clientes
         lista_clientes.append(cliente)
         print('Cliente cadastrado com sucesso!')
 
 
 # Função para listar os clientes cadastrados
 def listar_clientes():
+    # se a quantidade de clientes na lista for igual a 0, exibimos a mensagem
     if len(lista_clientes) == 0:
         print('Nenhum cliente cadastrado!')
         return
+    # se houver clientes na lista, exibimos as informações deles com um loop iterando sobre a lista de clientes, ou seja, para cada cliente na lista de clientes, exibimos as informações dele
     else:
         print('Listando clientes...')
         # Enumera os clientes e exibe suas informações
         for indice, cliente in enumerate(lista_clientes, start=1):
+            # usamos o método enumerate para obter o índice do cliente na lista e exibimos as informações do cliente, usamos o start=1 para começar a contagem do índice em 1
             print(f" {indice}- Cliente: {cliente['nome']}, Email: {cliente['email']}, Telefone: {cliente['telefone']}, CPF: {cliente['cpf']}")
 
 
 # Função para excluir um cliente
 def excluir_cliente():
+    # Lista os clientes cadastrados
     listar_clientes()
     cliente_exclude = int(input('Digite o índice do cliente que deseja excluir: '))
-    if 0 < cliente_exclude <= len(lista_clientes):
+    if 0 < cliente_exclude <= len(lista_clientes):# se o índice fornecido for válido, excluímos o cliente da lista de clientes, funciona da mesma forma que a funçao de excluir peças
         # Remove o cliente da lista de clientes
         lista_clientes.pop(cliente_exclude - 1)
+        # usa o método pop para remover o cliente da lista de clientes, subtraímos 1 do índice fornecido para obter o índice correto do cliente na lista de clientes
         print('Cliente excluído com sucesso!')
     else:
         print('Índice inválido!')
@@ -110,20 +116,21 @@ def cadastrar_carro():
     if not cliente_encontrado:
         print('Cliente não encontrado!')
         return
-
-    # Cria um dicionário com os dados do carro e adiciona à lista de carros na oficina
-    carro = {
-        'placa': placa,
-        'modelo': modelo,
-        'ano': ano,
-        'cor': cor,
-        'cliente': nome_cliente,
-        'descricao': descricao,
-        'servico': servico,
-        'preço do serviço': preco
-    }
-    carros_na_oficina.append(carro)
-    print('Carro cadastrado com sucesso!')
+    else:
+        # Cria um dicionário com os dados do carro e adiciona à lista de carros na oficina
+        carro = {
+            'placa': placa,
+            'modelo': modelo,
+            'ano': ano,
+            'cor': cor,
+            'cliente': nome_cliente,
+            'descricao': descricao,
+            'servico': servico,
+            'preço do serviço': preco
+        }
+        # usa o método append para adicionar o dicionario que contem as informaçoes do carro à lista de carros na oficina
+        carros_na_oficina.append(carro)
+        print('Carro cadastrado com sucesso!')
 
 
 # Função para listar os carros na oficina

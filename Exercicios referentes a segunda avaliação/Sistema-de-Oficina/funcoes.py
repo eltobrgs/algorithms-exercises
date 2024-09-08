@@ -106,14 +106,14 @@ def cadastrar_carro():
     servico = input('Digite o serviço a ser realizado: ')
     preco = int(input('Digite o preço do serviço (Após avaliação do mecânico): '))
 
-    cliente_encontrado = False
+    cliente_encontrado = False  # Variável para verificar se o cliente foi encontrado, partimos de uma premissa falsa
     for cliente in lista_clientes:
-        if cliente['nome'] == nome_cliente:
+        if cliente['nome'] == nome_cliente: # Se o nome do cliente for igual ao nome fornecido, o cliente foi encontrado e a variável cliente_encontrado é alterada para True
             cliente_encontrado = True
             print('Cliente encontrado!')
             break
         
-    if not cliente_encontrado:
+    if not cliente_encontrado: # Se a variável cliente_encontrado for False, exibimos a mensagem de que o cliente não foi encontrado
         print('Cliente não encontrado!')
         return
     else:

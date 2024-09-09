@@ -171,6 +171,7 @@ def verificar_limite_consultas(medico_escolhido, dia_consulta):
     for consulta in lista_consultas: #itera em cada consulta dentro da lista de consultas
         if consulta['medico_escolhido'] == medico_escolhido and consulta['dia_consulta'] == dia_consulta: #itera em toda a lista de consultas, olhando especificamente para o valor atribuido a "medico_escolhido" e "dia_consulta" para verificar se o medico ja atingiu o limite de consultas, se o for igual ao medico_escolhido e dia_consulta que esta sendo cadastrado, o medico ja atingiu o limite de consultas
             consultas_do_dia.append(consulta)
+
     # esse for fez o seguinte, ele ve se o medico escolhido é igual ao medico que esta na lista de consultas e se o dia da consulta é igual ao dia da consulta que esta na lista de consultas, se for, ele adiciona a consulta a lista consultas_do_dia
     #logo depois ele verifica se o tamanho da lista consultas_do_dia é menor que o limite de atendimentos do medico, se for, ele retorna True, se não, ele retorna False
 

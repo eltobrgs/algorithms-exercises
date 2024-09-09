@@ -90,8 +90,7 @@ def listar_medicos():
 
 
 def excluir_medico():
-    print("listando medicos...")
-    sleep(1)
+    listar_medicos()
     try:
         medico_exclude= int(input("Qual indice do medico que deseja excluir:"))
         if medico_exclude < 0 or medico_exclude > len(lista_medicos):
@@ -149,8 +148,7 @@ def listar_pacientes():
 
 
 def excluir_paciente():
-    print("listando pacientes...")
-    sleep(1)
+    listar_pacientes()
 
     try:
         paciente_exclude= int(input("Qual indice do paciente que deseja excluir:"))
@@ -256,9 +254,7 @@ def listar_consultas():
 
 
 def excluir_consulta():
-    print("listando consultas...")
-    sleep(1)
-
+    listar_consultas()
     try:
         consulta_exclude= int(input("Qual indice da consulta que deseja excluir:"))
         if consulta_exclude < 0 or consulta_exclude > len(lista_consultas): #verifica se o indice da consulta que o usuario deseja excluir é valido, valido seria entre 0 e o tamanho da lista de consultas

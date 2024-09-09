@@ -9,6 +9,8 @@ def main():
             print("4 - Listar participantes")
             print("5 - Excluir participante")
             print("6 - Excluir evento")
+            print("7 - procurar participante")
+            print("8 - procurar evento")
             print("0 - Sair do sistema")
             
             op = int(input("Digite a opção desejada: "))

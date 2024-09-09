@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, simpledialog
+from tkinter import messagebox, simpledialog, ttk
 from time import sleep
 
 # Listas
@@ -28,13 +28,13 @@ def cadastrar_medico():
     nome = simpledialog.askstring("Cadastrar Médico", "Digite o nome do médico:")
     especialidade = simpledialog.askstring("Cadastrar Médico", "Digite a especialidade:")
     credencial = simpledialog.askstring("Cadastrar Médico", "Digite a credencial do médico:")
-    limite = simpledialog.askinteger("Cadastrar Médico", "Digite o limite de atendimentos por dia:(maximo 5)")
-    
+    limite = simpledialog.askinteger("Cadastrar Médico", "Digite o limite de atendimentos por dia (máximo 5):", minvalue=1, maxvalue=5)
+
     for medico in lista_medicos:
         if medico['credencial'] == credencial:
             messagebox.showerror("Erro", "Médico já cadastrado!")
             return
-    
+
     medico = {'nome': nome, 'especialidade': especialidade, 'credencial': credencial, 'limite': limite}
     lista_medicos.append(medico)
     messagebox.showinfo("Sucesso", "Médico cadastrado com sucesso!")
@@ -59,18 +59,18 @@ def excluir_medico():
 
 def cadastrar_paciente():
     nome = simpledialog.askstring("Cadastrar Paciente", "Digite o nome do paciente:")
-    cpf = simpledialog.askstring("Cadastrar Paciente", "Digite o CPF do paciente:")
-    email = simpledialog.askstring("Cadastrar Paciente", "Digite o email do paciente:")
-    
+    cpf = simpledialog.askstring("Cadastrar Paciente", "Digite o CPF do paciente (somente números):")
+
     if not cpf_valido(cpf):
         messagebox.showerror("Erro", "CPF inválido!")
         return
-    
+
     for paciente in lista_pacientes:
         if paciente['cpf'] == cpf:
             messagebox.showerror("Erro", "Paciente já cadastrado!")
             return
-    
+
+    email = simpledialog.askstring("Cadastrar Paciente", "Digite o e-mail do paciente:")
     paciente = {'nome': nome, 'cpf': cpf, 'email': email}
     lista_pacientes.append(paciente)
     messagebox.showinfo("Sucesso", "Paciente cadastrado com sucesso!")
@@ -81,7 +81,7 @@ def listar_pacientes():
     else:
         pacientes = ""
         for i, paciente in enumerate(lista_pacientes):
-            pacientes += f"{i + 1}. {paciente['nome']} - {paciente['cpf']}\n"
+            pacientes += f"{i + 1}. {paciente['nome']} - CPF: {paciente['cpf']}, Email: {paciente['email']}\n"
         messagebox.showinfo("Lista de Pacientes", pacientes)
 
 def excluir_paciente():
@@ -93,39 +93,40 @@ def excluir_paciente():
     else:
         messagebox.showerror("Erro", "Índice inválido!")
 
+def verificar_limite_consultas(medico_escolhido, dia_consulta):
+    consultas_do_dia = [consulta for consulta in lista_consultas if consulta['medico_escolhido'] == medico_escolhido and consulta['dia_consulta'] == dia_consulta]
+    medico = next((med for med in lista_medicos if med['nome'] == medico_escolhido), None)
+    if medico and len(consultas_do_dia) < medico['limite']:
+        return True
+    else:
+        messagebox.showinfo("Limite de Consultas", "Médico atingiu o máximo de consultas!")
+        return False
+
 def agendar_consulta():
-    listar_pacientes()
-    paciente_indice = simpledialog.askinteger("Agendar Consulta", "Digite o índice do paciente:")
-    
-    if 0 < paciente_indice <= len(lista_pacientes):
-        paciente = lista_pacientes[paciente_indice - 1]
-    else:
-        messagebox.showerror("Erro", "Paciente não encontrado!")
-        return
-    
+    nome_paciente = simpledialog.askstring("Agendar Consulta", "Digite o nome do paciente:")
+    cpf_paciente = simpledialog.askstring("Agendar Consulta", "Digite o CPF do paciente (somente números):")
+
+    paciente = next((pac for pac in lista_pacientes if pac['cpf'] == cpf_paciente and pac['nome'] == nome_paciente), None)
+    if not paciente:
+        messagebox.showinfo("Paciente não cadastrado", "Paciente não encontrado. Cadastrando novo paciente.")
+        cadastrar_paciente()
+
     listar_medicos()
-    medico_indice = simpledialog.askinteger("Agendar Consulta", "Digite o índice do médico:")
-    
-    if 0 < medico_indice <= len(lista_medicos):
-        medico = lista_medicos[medico_indice - 1]
-    else:
+    medico_escolhido = simpledialog.askstring("Agendar Consulta", "Com que médico deseja se consultar?")
+    medico = next((med for med in lista_medicos if med['nome'] == medico_escolhido), None)
+    if not medico:
         messagebox.showerror("Erro", "Médico não encontrado!")
         return
-    
-    dia = simpledialog.askstring("Agendar Consulta", "Digite o dia da consulta:")
-    hora = simpledialog.askstring("Agendar Consulta", "Digite a hora da consulta:")
-    
-    consultas_medico = []
-    for consulta in lista_consultas:
-        if consulta['medico'] == medico['nome'] and consulta['dia'] == dia:
-            consultas_medico.append(consulta)
 
-    if len(consultas_medico) < medico['limite']:
-        consulta = {'paciente': paciente['nome'], 'medico': medico['nome'], 'dia': dia, 'hora': hora}
-        lista_consultas.append(consulta)
-        messagebox.showinfo("Sucesso", "Consulta agendada com sucesso!")
-    else:
-        messagebox.showerror("Erro", "Limite de consultas atingido para este médico!")
+    dia_consulta = simpledialog.askstring("Agendar Consulta", "Qual o dia da consulta?")
+
+    if not verificar_limite_consultas(medico_escolhido, dia_consulta):
+        return
+
+    hora_consulta = simpledialog.askstring("Agendar Consulta", "Qual o horário da consulta?")
+    consulta = {'nome_paciente': nome_paciente, 'cpf_paciente': cpf_paciente, 'medico_escolhido': medico_escolhido, 'dia_consulta': dia_consulta, 'hora_consulta': hora_consulta}
+    lista_consultas.append(consulta)
+    messagebox.showinfo("Sucesso", "Consulta agendada com sucesso!")
 
 def listar_consultas():
     if not lista_consultas:
@@ -133,7 +134,7 @@ def listar_consultas():
     else:
         consultas = ""
         for i, consulta in enumerate(lista_consultas):
-            consultas += f"{i + 1}. Paciente: {consulta['paciente']}, Médico: {consulta['medico']}, Dia: {consulta['dia']}, Hora: {consulta['hora']}\n"
+            consultas += f"{i + 1}. Paciente: {consulta['nome_paciente']}, Médico: {consulta['medico_escolhido']}, Dia: {consulta['dia_consulta']}, Hora: {consulta['hora_consulta']}\n"
         messagebox.showinfo("Lista de Consultas", consultas)
 
 def excluir_consulta():
@@ -145,35 +146,66 @@ def excluir_consulta():
     else:
         messagebox.showerror("Erro", "Índice inválido!")
 
-# Interface gráfica
-root = tk.Tk()
-root.title("Consultório Médico")
+def pesquisar_medico():
+    nome_medico = simpledialog.askstring("Pesquisar Médico", "Digite o nome do médico que deseja pesquisar:")
+    medico = next((med for med in lista_medicos if med['nome'] == nome_medico), None)
+    if medico:
+        messagebox.showinfo("Médico Encontrado", f"Médico: {medico['nome']}\nEspecialidade: {medico['especialidade']}\nCredencial: {medico['credencial']}\nLimite de atendimentos: {medico['limite']}")
+        resposta = simpledialog.askstring("Agendar Consulta", "Deseja se consultar com esse médico? (S/N)").upper()
+        if resposta == "S":
+            agendar_consulta()
+        else:
+            messagebox.showinfo("Encerramento", "Obrigado... Tchau!")
+    else:
+        messagebox.showerror("Erro", "Médico não encontrado!")
 
-# Criação dos botões
-btn_cadastrar_medico = tk.Button(root, text="Cadastrar Médico", command=cadastrar_medico)
-btn_listar_medico = tk.Button(root, text="Listar Médicos", command=listar_medicos)
-btn_excluir_medico = tk.Button(root, text="Excluir Médico", command=excluir_medico)
+def pesquisar_paciente():
+    nome_paciente = simpledialog.askstring("Pesquisar Paciente", "Digite o nome do paciente que deseja pesquisar:")
+    paciente = next((pac for pac in lista_pacientes if pac['nome'] == nome_paciente), None)
+    if paciente:
+        messagebox.showinfo("Paciente Encontrado", f"Paciente: {paciente['nome']}\nCPF: {paciente['cpf']}\nEmail: {paciente['email']}")
+        resposta = simpledialog.askstring("Agendar Consulta", "Deseja agendar uma consulta para esse paciente? (S/N)").upper()
+        if resposta == "S":
+            agendar_consulta()
+        else:
+            messagebox.showinfo("Encerramento", "Obrigado... Tchau!")
+    else:
+        messagebox.showerror("Erro", "Paciente não encontrado!")
 
-btn_cadastrar_paciente = tk.Button(root, text="Cadastrar Paciente", command=cadastrar_paciente)
-btn_listar_pacientes = tk.Button(root, text="Listar Pacientes", command=listar_pacientes)
-btn_excluir_paciente = tk.Button(root, text="Excluir Paciente", command=excluir_paciente)
+def pesquisar_consulta():
+    cpf_paciente = simpledialog.askstring("Pesquisar Consulta", "Digite o CPF do paciente que deseja pesquisar a consulta:")
+    consultas_paciente = [cons for cons in lista_consultas if cons['cpf_paciente'] == cpf_paciente]
+    if consultas_paciente:
+        consultas = ""
+        for i, consulta in enumerate(consultas_paciente):
+            consultas += f"{i + 1}. Médico: {consulta['medico_escolhido']}, Dia: {consulta['dia_consulta']}, Hora: {consulta['hora_consulta']}\n"
+        messagebox.showinfo("Consultas Encontradas", consultas)
+    else:
+        messagebox.showerror("Erro", "Nenhuma consulta encontrada para o CPF informado!")
 
-btn_agendar_consulta = tk.Button(root, text="Agendar Consulta", command=agendar_consulta)
-btn_listar_consultas = tk.Button(root, text="Listar Consultas", command=listar_consultas)
-btn_excluir_consulta = tk.Button(root, text="Excluir Consulta", command=excluir_consulta)
+def criar_interface():
+    root = tk.Tk()
+    root.title("Sistema de Consultório")
 
-# Layout dos botões
-btn_cadastrar_medico.grid(row=0, column=0, padx=10, pady=10)
-btn_listar_medico.grid(row=0, column=1, padx=10, pady=10)
-btn_excluir_medico.grid(row=0, column=2, padx=10, pady=10)
+    frame = tk.Frame(root)
+    frame.pack(padx=10, pady=10)
 
-btn_cadastrar_paciente.grid(row=1, column=0, padx=10, pady=10)
-btn_listar_pacientes.grid(row=1, column=1, padx=10, pady=10)
-btn_excluir_paciente.grid(row=1, column=2, padx=10, pady=10)
+    tk.Button(frame, text="Cadastrar Médico", command=cadastrar_medico).grid(row=0, column=0, padx=5, pady=5)
+    tk.Button(frame, text="Listar Médicos", command=listar_medicos).grid(row=0, column=1, padx=5, pady=5)
+    tk.Button(frame, text="Excluir Médico", command=excluir_medico).grid(row=0, column=2, padx=5, pady=5)
 
-btn_agendar_consulta.grid(row=2, column=0, padx=10, pady=10)
-btn_listar_consultas.grid(row=2, column=1, padx=10, pady=10)
-btn_excluir_consulta.grid(row=2, column=2, padx=10, pady=10)
+    tk.Button(frame, text="Cadastrar Paciente", command=cadastrar_paciente).grid(row=1, column=0, padx=5, pady=5)
+    tk.Button(frame, text="Listar Pacientes", command=listar_pacientes).grid(row=1, column=1, padx=5, pady=5)
+    tk.Button(frame, text="Excluir Paciente", command=excluir_paciente).grid(row=1, column=2, padx=5, pady=5)
 
-# Executando a interface
-root.mainloop()
+    tk.Button(frame, text="Agendar Consulta", command=agendar_consulta).grid(row=2, column=0, padx=5, pady=5)
+    tk.Button(frame, text="Listar Consultas", command=listar_consultas).grid(row=2, column=1, padx=5, pady=5)
+    tk.Button(frame, text="Excluir Consulta", command=excluir_consulta).grid(row=2, column=2, padx=5, pady=5)
+
+    tk.Button(frame, text="Pesquisar Médico", command=pesquisar_medico).grid(row=3, column=0, padx=5, pady=5)
+    tk.Button(frame, text="Pesquisar Paciente", command=pesquisar_paciente).grid(row=3, column=1, padx=5, pady=5)
+    tk.Button(frame, text="Pesquisar Consulta", command=pesquisar_consulta).grid(row=3, column=2, padx=5, pady=5)
+
+    root.mainloop()
+
+criar_interface()

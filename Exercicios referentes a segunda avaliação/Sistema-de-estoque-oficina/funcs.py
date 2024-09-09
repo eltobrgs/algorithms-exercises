@@ -54,6 +54,22 @@ def listar_peças():
             # usamos o método enumerate para obter o índice da peça na lista e exibimos as informações da peça, usamos o start=1 para começar a contagem do índice em 1
             print(f"{indice} - {peça['nome']} - {peça['tipo']} - {peça['descriçao da peça']} - Quantidade: {peça['quantidade']} - Preço: R${peça['preço']:.2f}")
 
+
+def pesquisar_peça(): 
+    # pedimos para o usuário digitar o nome da peça que deseja pesquisar
+    peça_pesquisar = input("Digite o nome da peça que deseja pesquisar: ")
+    print("Procurando peça...")
+    peça_encontrada = False # criamos uma variável para verificar se a peça foi encontrada, ela começa como False e posteriormente será alterada para True se a peça for encontrada
+    for peça in peças_em_estoque: #itera em cada peça dentro do estoque
+        if peça['nome'] == peça_pesquisar: # verifica se o nome da peça é igual ao nome da peça que o usuário deseja pesquisar, se sim, ela exibe as informações da peça e altera a variável peça_encontrada para True
+            print(f"Peça encontrada: {peça['nome']} - {peça['tipo']} - {peça['descriçao da peça']} - Quantidade: {peça['quantidade']} - Preço: R${peça['preço']:.2f}")
+            peça_encontrada = True
+            break
+
+    if not peça_encontrada: # se a peça não for encontrada, a variel peça_encontrada continuará como False e exibiremos a mensagem de que a peça não foi encontrada
+        print("Peça não encontrada!")
+
+
 # funçao para vender peças
 def vender_peça():
     # chamamos a funçao de listar peças para exibir as peças disponíveis no estoque

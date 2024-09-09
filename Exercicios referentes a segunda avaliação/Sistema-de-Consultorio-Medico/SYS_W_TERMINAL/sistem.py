@@ -1,30 +1,29 @@
-# importando nossas funcoes do arquivo functionsofsystem.py
+# importando nossas funções do arquivo functionsofsystem.py
 import functionsofsystem
 
-#Dicionario para armazenar os seguintes dados
-lista_medicos = [] # lista medicos
-lista_pacientes = [] # lista pacientes
-lista_consultas = [] # lista consultas
-
 def main():
-    while True:  
+    while True:
         try:
             print("\n=== Sistema de Controle de Consultas ===")
-            print("1 - Cadastrar médico")#funcionalidade implementada
-            print("2 - Excluir médico") #funcionalidade ainda nao implementada
-            print("3 - Listar médicos")#funcionalidade implementada
+            print("1 - Cadastrar médico")
+            print("2 - Excluir médico")
+            print("3 - Listar médicos")
+            print("4 - Pesquisar médico")
 
-            print("4 - Cadastrar paciente")#funcionalidade implementada
-            print("5 - Excluir paciente") #funcionalidade ainda nao implementada
-            print("6 - Listar pacientes")#funcionalidade implementada
+            print("5 - Cadastrar paciente")
+            print("6 - Excluir paciente")
+            print("7 - Listar pacientes")
+            print("8 - Pesquisar paciente")
 
-            print("7 - Agendar consulta")#funcionalidade implementada
-            print("8 - Excluir consulta") #funcionalidade ainda nao implementada
-            print("9 - Listar consultas") #funcionalidade implementada
+            print("9 - Agendar consulta")
+            print("10 - Excluir consulta")
+            print("11 - Listar consultas")
+            print("12 - Pesquisar consulta")
 
             print("0 - Sair do sistema")
 
             opcao = input("Digite a opção: ")
+
             if opcao == "1":
                 functionsofsystem.cadastrar_medico()
             elif opcao == "2":
@@ -32,17 +31,23 @@ def main():
             elif opcao == "3":
                 functionsofsystem.listar_medicos()
             elif opcao == "4":
-                functionsofsystem.cadastrar_paciente()
+                functionsofsystem.pesquisar_medico()  # Corrigido
             elif opcao == "5":
-                functionsofsystem.excluir_paciente()
+                functionsofsystem.cadastrar_paciente()
             elif opcao == "6":
-                functionsofsystem.listar_pacientes()
+                functionsofsystem.excluir_paciente()
             elif opcao == "7":
-                functionsofsystem.agendar_consulta()
+                functionsofsystem.listar_pacientes()
             elif opcao == "8":
-                functionsofsystem.excluir_consulta()
+                functionsofsystem.pesquisar_paciente()  # Corrigido
             elif opcao == "9":
+                functionsofsystem.agendar_consulta()
+            elif opcao == "10":
+                functionsofsystem.excluir_consulta()
+            elif opcao == "11":
                 functionsofsystem.listar_consultas()
+            elif opcao == "12":
+                functionsofsystem.pesquisar_consulta()  # Corrigido
             elif opcao == "0":
                 print("Saindo do programa...")
                 break
@@ -51,7 +56,6 @@ def main():
         except Exception as e:
             print("Ocorreu um erro:", str(e))
             break
-            #mostra o erro que ocorreu no sistema e quenra a execucao do programa
 
 
 if __name__ == "__main__":

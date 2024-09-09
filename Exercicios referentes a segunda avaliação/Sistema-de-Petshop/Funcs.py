@@ -38,13 +38,13 @@ def catalogar_serv():
 
 def listar_serv():
     # essa função vai listar os serviços cadastrados, ela vai percorrer a lista de serviços e mostrar o nome do serviço, o preço e a descrição
-    if len(lista_serv) == 0:
+    if len(lista_serv) == 0: # se a lista de serviços estiver vazia, exibe a mensagem, ou seja se o tamanho da lista for zero, ele exibe a mensagem
         print('Nenhum serviço cadastrado!')
         return
-    else:
+    else: # se a lista de serviços não estiver vazia, ele exibe a mensagem e percorre a lista de serviços
         print('Listando serviços...')
-        for serv in lista_serv:
-            indice = lista_serv.index(serv) + 1
+        for serv in lista_serv: # para cada serviço na lista de serviços, ele exibe o nome do serviço, o preço e a descrição
+            indice = lista_serv.index(serv) + 1 # o indice é o numero do serviço na lista, eu adicionar +1 para começar do 1 e não do 0, ja que na vida real não existe o indice 0
             print(f"{indice}- Serviço: {serv['serv']}, Preço: {serv['preco']}, Descrição: {serv['descricao']}")
 
     # essa varivel indice vai ser usada para mostrar o indice do serviço na lista de serviços, o indice é o numero do serviço na lista, eu adicionar +1 para começar do 1 e não do 0, ja que na vida real não existe o indice 0
@@ -57,6 +57,7 @@ def cadastrar_pet():
     idade = int(input('Digite a idade do pet: '))
     pet = {'dono': dono, 'nome': nome, 'raca': raca, 'idade': idade}
     lista_pets.append(pet)
+    #lembrando que a lista de pets é uma lista de dicionarios, cada dicionario é um pet, e usamos o metodo .append para adicionar o dicionario pet a lista de pets
     print('Pet cadastrado com sucesso!')
 
 def listar_pets():
@@ -117,15 +118,15 @@ def agendar_servico():
 
 
 def listar_agendamentos():
-    if len(lista_agendamentos) == 0:
+    if len(lista_agendamentos) == 0: # se a lista de agendamentos estiver vazia, exibe a mensagem
         print('Nenhum agendamento realizado!')
         return
-    else :
+    else : # se a lista de agendamentos não estiver vazia, ele exibe a mensagem e percorre a lista de agendamentos
         print('Listando agendamentos...')
-        for agendamento in lista_agendamentos:
-            indice = lista_agendamentos.index(agendamento) + 1
+        for agendamento in lista_agendamentos: # para cada agendamento na lista de agendamentos, ele exibe o nome do pet, o serviço, a data e a hora
+            indice = lista_agendamentos.index(agendamento) + 1 # o indice é o numero do agendamento na lista, eu adicionar +1 para começar do 1 e não do 0, ja que na vida real não existe o indice 0
             print(f"{indice}- Pet: {agendamento['pet']}, Serviço: {agendamento['serv']}, Data: {agendamento['data']}, Hora: {agendamento['hora']}")
-
+            #clary mel, eu escervi a explicaçao umas 30000 vezes, se vc nao entendeu, bata nessa tecla, vou explicar bem direitinho na aula
 def cancelar_servico():
     listar_agendamentos()
     servico_exclude = int(input('Digite o indice do serviço que deseja cancelar: '))

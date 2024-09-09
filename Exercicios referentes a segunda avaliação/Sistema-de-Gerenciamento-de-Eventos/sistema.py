@@ -7,6 +7,8 @@ def main():
             print("2 - Listar eventos")
             print("3 - Cadastrar participante")
             print("4 - Listar participantes")
+            print("5 - Excluir participante")
+            print("6 - Excluir evento")
             print("0 - Sair do sistema")
             
             op = int(input("Digite a opção desejada: "))
@@ -23,6 +25,10 @@ def main():
                 funcoes.excluir_participante()
             elif op == 6:
                 funcoes.excluir_evento()
+            elif op== 7:
+                funcoes.listar_participante()
+            elif op== 8:
+                funcoes.listar_evento()
             elif op == 0:
                 print("Saindo do sistema...")
                 break

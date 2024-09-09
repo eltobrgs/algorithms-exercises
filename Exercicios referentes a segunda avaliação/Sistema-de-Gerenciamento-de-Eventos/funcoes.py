@@ -158,3 +158,35 @@ def excluir_evento():
     else:
         print('Índice inválido!')
     
+
+def listar_participante():
+    cpf_participante = input("Digite o CPF do participante: ")
+    # pedimos para o usuário digitar o cpf do participante para exibir as informações dele
+    for participante in lista_participantes:
+        if cpf_participante in [participante['cpf']]:
+            print("Participante encontrado:", participante)
+            return
+        else:
+            print('participante nao encontrado na lista de participantes')
+
+def listar_evento():
+    nome_evento = input("Digite o nome do evento: ")
+    # pedimos para o usuário digitar o cpf do participante para exibir as informações dele
+    for evento in lista_eventos:
+        if nome_evento in [evento['nome']]:
+            print("evento encontrado:", evento["nome"])
+
+            if evento['vagas'] > 0:
+                print(f"Vagas disponíveis: {evento['vagas']}") 
+                
+                resp= input("Gostaria de se inscrever no evento? S/N").capitalize()
+                if resp =="S":
+                    cadastrar_participante()
+                else:
+                    print("OK!")
+                    print('saindo do sistema...' )
+                    break
+        else:
+            print('evento nao encontrado na lista de evento ')
+    
+    

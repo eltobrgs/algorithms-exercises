@@ -1,4 +1,4 @@
-import funcs
+import funcs #importando o arquivo de funçaoes 
 
 def main():
     while True:
@@ -9,6 +9,7 @@ def main():
             print("2 - Listar peças")
             print("3 - pesquisar peça no estoque")
             print("4 - Vender peça")
+            print('5- excluir peça do estoque')
             print("0 - Sair do sistema")
             print("-" * 30)
 
@@ -22,6 +23,8 @@ def main():
                 funcs.pesquisar_peça()
             elif opçao == 4:
                 funcs.vender_peça()
+            elif opçao == 5:
+                funcs.excluir_peça()
             elif opçao == 0:
                 print("Saindo do sistema...")
                 break
@@ -30,6 +33,7 @@ def main():
 
         except ValueError:
             print("Digite um valor válido.")
+            break
             
 
 if __name__ =='__main__':

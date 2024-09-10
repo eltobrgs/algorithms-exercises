@@ -57,9 +57,10 @@ def listar_peças():
 
 def pesquisar_peça(): 
     # pedimos para o usuário digitar o nome da peça que deseja pesquisar
-    peça_pesquisar = input("Digite o nome da peça que deseja pesquisar: ").capitalize()
+    peça_pesquisar = input("Digite o nome da peça que deseja pesquisar: ").capitalize() # ele um metodo que deixa a primeira letra do nome maiuscula, sempre. é usada para evitar conflitos no codigo
     print("Procurando peça...")
     peça_encontrada = False # criamos uma variável para verificar se a peça foi encontrada, ela começa como False e posteriormente será alterada para True se a peça for encontrada
+
     for peça in peças_em_estoque: #itera em cada peça dentro do estoque
         if peça['nome'] == peça_pesquisar: # verifica se o nome da peça é igual ao nome da peça que o usuário deseja pesquisar, se sim, ela exibe as informações da peça e altera a variável peça_encontrada para True
             print(f"Peça encontrada: {peça['nome']} - {peça['tipo']} - {peça['descriçao da peça']} - Quantidade: {peça['quantidade']} - Preço: R${peça['preço']:.2f}")
@@ -117,6 +118,23 @@ def vender_peça():
         else:
             print("Quantidade insuficiente no estoque.")
             print(f"Temos apenas {peça['quantidade']} unidades no estoque.")
+
+
+def excluir_peça():
+    if len(peças_em_estoque)==0: #se a quantidade de elementos na lista
+        print('nenhuma peça cadastrada no sistema')
+    else:
+        listar_peças()
+
+        peçaexcluir= int(input('Digite o indice da peça que deseja excluir:')) #pergunta o indice da peça a ser exluida, é int pq énumero inteiro
+
+        if 0 < peçaexcluir <= len(peças_em_estoque):# Verificar se o índice da peça a ser excluído é válido, da seguinte forma: se o índice do peça a ser excluído for maior que 0 e menor ou igual ao tamanho da lista de peças, ele é válido
+                # Remove o peça da lista de peças
+                peças_em_estoque.pop(peçaexcluir - 1)
+                # usa o método pop para remover o peça da lista de peças
+                print('peça excluida com sucesso!')
+            
+    
 
 
 

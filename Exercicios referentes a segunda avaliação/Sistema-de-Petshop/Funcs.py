@@ -24,7 +24,7 @@ lista_agendamentos = []
 
 # essa função vai cadastrar um serviço no catalogo de serviços caso voce queira adicionar um novo serviço que o petshop vá a oferecer
 def catalogar_serv():
-    serv = input('Digite o nome do serviço: ')
+    serv = input('Digite o nome do serviço: ').capitalize()
     preco = float(input('Digite o preço do serviço: '))
     descricao = input('Digite a descrição do serviço: ')
     # serv é o nome do serviço, preco é o preço do serviço e descricao é a descrição do serviço, vou usar esses valores para criar um dicionario que vai ser adicionado a lista_serv
@@ -51,8 +51,8 @@ def listar_serv():
 
 def cadastrar_pet():
     # exatamente a mesma logica do cadastro de serviço, só que agora para o cadastro de pets
-    dono= input('Digite o nome do dono do pet: ')
-    nome = input('Digite o nome do pet: ')
+    dono= input('Digite o nome do dono do pet: ').capitalize()
+    nome = input('Digite o nome do pet: ').capitalize()
     raca = input('Digite a raça do pet: ')
     idade = int(input('Digite a idade do pet: '))
     pet = {'dono': dono, 'nome': nome, 'raca': raca, 'idade': idade}
@@ -82,8 +82,8 @@ def agendar_servico():
     listar_pets()
     listar_serv()
 
-    pet = input('Digite o nome do pet: ')
-    serv = input('Digite o serviço desejado: ')
+    pet = input('Digite o nome do pet: ').capitalize()
+    serv = input('Digite o serviço desejado: ').capitalize()
     data = input('Digite a data do serviço: ')
     hora = input('Digite a hora do serviço: ')
 

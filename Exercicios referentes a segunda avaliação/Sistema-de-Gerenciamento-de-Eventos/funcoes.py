@@ -59,23 +59,26 @@ def cadastrar_evento():
 
 
 def listar_eventos():
-    for i, evento in enumerate(lista_eventos, start=1):
-        # usamos o método enumerate para obter o índice do evento na lista e exibimos as informações do evento, usamos o start=1 para começar a contagem do índice em 1
-        # se houver eventos na lista, exibimos as informações deles com um loop iterando sobre a lista de eventos, ou seja, para cada evento na lista de eventos, exibimos as informações dele
-        print(f"{i}-Evento:{evento['nome']}")
-        print(f"Organizador: {evento['organizador']}")
-        print(f"CPF do organizador: {evento['cpf_organizador']}")
-        print(f"Data: {evento['data']}")
-        print(f"Horário: {evento['horario']}")
-        print(f"Local: {evento['local']}")
-        print(f"Vagas disponíveis: {evento['vagas']}")
-        print("")
+    # se a quantidade de eventos for igual a 0, exibimos a mensagem
+    if len(lista_eventos) == 0:
+        print("Nenhum evento cadastrado.")
+    else:
+        print("Eventos disponíveis:")
+        for i, evento in enumerate(lista_eventos, start=1):
+            # usamos o método enumerate para obter o índice do evento na lista e exibimos as informações do evento, usamos o start=1 para começar a contagem do índice em 1
+            # se houver eventos na lista, exibimos as informações deles com um loop iterando sobre a lista de eventos, ou seja, para cada evento na lista de eventos, exibimos as informações dele
+            print(f"{i}-Evento:{evento['nome']}")
+            print(f"Organizador: {evento['organizador']}")
+            print(f"CPF do organizador: {evento['cpf_organizador']}")
+            print(f"Data: {evento['data']}")
+            print(f"Horário: {evento['horario']}")
+            print(f"Local: {evento['local']}")
+            print(f"Vagas disponíveis: {evento['vagas']}")
+            print("")
 
 
 
 def cadastrar_participante():
-    print("Lista de eventos disponíveis:")
-    listar_eventos()  # Exibir lista de eventos antes de pedir o evento
     nome_participante = input("Digite o nome do participante: ")
     cpf_participante = input("Digite o CPF do participante: ")
     # pedimos para o usuário digitar o nome e o cpf do participante para poder participar do evento
@@ -87,6 +90,8 @@ def cadastrar_participante():
     # se ele for invalido retornamos da funçao
     # se ele for valido pedimos para o usuário digitar o número do evento que deseja participar
     else:
+        print("Lista de eventos disponíveis:")
+        listar_eventos()  # Exibir lista de eventos antes de pedir o evento
         evento_escolhido = int(input("Digite o número do evento que deseja participar: "))
         
         if 1 <= evento_escolhido <= len(lista_eventos): # Verificar se o evento escolhido existe, da seguinte forma: se o evento escolhido for maior ou igual a 1 e menor ou igual ao tamanho da lista de eventos ele existe
@@ -134,29 +139,38 @@ def listar_participantes():
 
 
 def excluir_participante():
-    # chamamos a funçao de listar participantes para exibir os participantes do evento antes de pedir o participante
-    listar_participantes()
-
-    participanteexcluir = int(input('Digite o índice do participante do evento que deseja excluir: '))
-    
-    if 0 < participanteexcluir <= len(lista_participantes):# Verificar se o índice do participante a ser excluído é válido, da seguinte forma: se o índice do participante a ser excluído for maior que 0 e menor ou igual ao tamanho da lista de participantes, ele é válido
-        # Remove o participante do evento da lista de participante do eventos
-        lista_participantes.pop(participanteexcluir - 1)
-        # usa o método pop para remover o participante do evento da lista de participantes do evento
-        print('participante do evento excluído com sucesso!')
+    if len(lista_participantes) == 0:
+        print("Nenhum participante cadastrado.")
+        return
     else:
-        print('Índice inválido!')
+        
+        # chamamos a funçao de listar participantes para exibir os participantes do evento antes de pedir o participante
+        listar_participantes()
+
+        participanteexcluir = int(input('Digite o índice do participante do evento que deseja excluir: '))
+        
+        if 0 < participanteexcluir <= len(lista_participantes):# Verificar se o índice do participante a ser excluído é válido, da seguinte forma: se o índice do participante a ser excluído for maior que 0 e menor ou igual ao tamanho da lista de participantes, ele é válido
+            # Remove o participante do evento da lista de participante do eventos
+            lista_participantes.pop(participanteexcluir - 1)
+            # usa o método pop para remover o participante do evento da lista de participantes do evento
+            print('participante do evento excluído com sucesso!')
+        else:
+            print('Índice inválido!')
 
 
 def excluir_evento():
-    # mesma coisa que a funçao de excluir participante, mas para eventos
-    listar_eventos()
-    eventoexcluir = int(input('Digite o índice do evento que deseja excluir: '))
-    if 0 < eventoexcluir <= len(lista_eventos):
-        lista_eventos.pop(eventoexcluir - 1)
-        print('Evento excluído com sucesso!')
+    if len(lista_eventos) == 0:
+        print("Nenhum evento cadastrado.")
+        return
     else:
-        print('Índice inválido!')
+        # mesma coisa que a funçao de excluir participante, mas para eventos
+        listar_eventos()
+        eventoexcluir = int(input('Digite o índice do evento que deseja excluir: '))
+        if 0 < eventoexcluir <= len(lista_eventos):
+            lista_eventos.pop(eventoexcluir - 1)
+            print('Evento excluído com sucesso!')
+        else:
+            print('Índice inválido!')
     
 
 def listar_participante():

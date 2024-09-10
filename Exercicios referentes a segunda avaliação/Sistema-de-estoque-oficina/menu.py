@@ -8,7 +8,7 @@ def main():
             print("1 - Cadastrar peça")
             print("2 - Listar peças")
             print("3 - pesquisar peça no estoque")
-            print("3 - Vender peça")
+            print("4 - Vender peça")
             print("0 - Sair do sistema")
             print("-" * 30)
 

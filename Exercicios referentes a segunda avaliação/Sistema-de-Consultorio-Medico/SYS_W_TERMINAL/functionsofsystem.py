@@ -53,11 +53,13 @@ def cadastrar_medico():
 
     for medico in lista_medicos:
         if medico['credencial'] == credencial_medico:
+            
             print("Médico já cadastrado no sistema!")
+            
             return
 
     medico = {
-        'nome': nome_medico,
+        'nome': "DR."+nome_medico,
         'credencial': credencial_medico,
         'especialidade': especialidade,
         'limite_atendimento': limite_atendimentos
@@ -66,7 +68,9 @@ def cadastrar_medico():
     lista_medicos.append(medico)
     print("Carregando...")
     sleep(1)
+    
     print("Médico cadastrado com sucesso!")
+    
 
 # Função para listar médicos
 # feito em grupo na sala mas modificado por mim, pensando em alguma situaçao que alguem tente listar medicos e suas especialidades
@@ -75,7 +79,9 @@ def listar_medicos():
     print("Carregando médicos...")
     sleep(1)
     if not lista_medicos:
+        
         print("Nenhum medico cadastrado no sistema!")
+        
         return
     
     print('Medicos disponiveis:')
@@ -86,7 +92,9 @@ def listar_medicos():
         o índice automaticamente: o método .index(medico) retorna o índice do médico atual dentro da lista lista_medicos.'''
 
         indice = lista_medicos.index(medico) + 1 
+        
         print(f" {indice} - Médico: {medico['nome']}, Especialidade: {medico['especialidade']}")
+        
 
 
 def excluir_medico():
@@ -97,8 +105,11 @@ def excluir_medico():
             print("Indice invalido")
             return 
         else:
-            lista_medicos.pop(medico_exclude - 1) #.pop é um metodo que remove o item de uma lista dado o seu indice, o indice é passado como argumento para o metodo .pop 
+            lista_medicos.pop(medico_exclude - 1) #.pop é um metodo que remove o item de uma lista dado o seu indice, o indice é passado como argumento para o metodo .pop
+            
             print("Medico excluido com sucesso!")
+            
+
     except ValueError:
         print("Digite apenas o indice, não o nome do medico, ou qualquer outra credencial na lista")
     
@@ -111,12 +122,16 @@ def cadastrar_paciente():
 
     # Verifica se o CPF é válido
     if not cpf_valido(cpf_paciente):
+        
         print("CPF inválido, entre com um CPF válido!")
+        
         return
     
     for paciente in lista_pacientes:
         if paciente['cpf_paciente'] == cpf_paciente: #itera em toda a lista de pacientes, olhando especificamente para o valor atribuido a "cpf_paciente" para verificar se o paciente ja esta cadastrado, se o for igual ao cpf_paciente que esta sendo cadastrado, o paciente ja foi cadastrado
+            
             print("Paciente já cadastrado no sistema!")
+            
             return
         
     email_paciente = input("Digite o email do paciente: ")
@@ -129,7 +144,9 @@ def cadastrar_paciente():
     lista_pacientes.append(paciente)
     print("Carregando...")
     sleep(1)
+    
     print("Paciente cadastrado com sucesso!")
+    
 
 
 # Função para listar pacientes
@@ -138,7 +155,10 @@ def listar_pacientes():
     print("Carregando pacientes...")
     sleep(1)
     if not lista_pacientes:
+        
         print("Nenhum paciente cadastrado no sistema!")
+        
+
         return
 
     for paciente in lista_pacientes:
@@ -153,11 +173,16 @@ def excluir_paciente():
     try:
         paciente_exclude= int(input("Qual indice do paciente que deseja excluir:"))
         if paciente_exclude < 0 or paciente_exclude > len(lista_pacientes):
+            
             print("Indice invalido")
+            print('-'*50)
             return 
         else:
             lista_pacientes.pop(paciente_exclude - 1)
+            
             print("Paciente excluido com sucesso!")
+            
+
 
     except ValueError:
         print("Digite apenas o indice, não o nome do paciente, ou qualquer outro cpf na lista")
@@ -183,7 +208,9 @@ def verificar_limite_consultas(medico_escolhido, dia_consulta):
     if medico and len(consultas_do_dia) < medico['limite_atendimento']: #se o medico for diferente de None e o tamanho da lista consultas_do_dia for menor que o limite de atendimentos do medico, ele retorna True
         return True
     else:
+        
         print("Médico atingiu o máximo de consultas!") #se o medico atingiu o limite de consultas, ele exibe a mensagem
+        
         return False
 
 # Função para agendar consulta
@@ -202,8 +229,6 @@ def agendar_consulta():
     if not paciente_cadastrado:
         cadastrar_paciente()
 
-    print("Carregando médicos disponíveis no consultório...")
-    sleep(1)
     listar_medicos()
 
     medico_escolhido = input("Com que médico deseja se consultar: ")

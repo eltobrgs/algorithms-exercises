@@ -8,7 +8,8 @@ def main():
             print('3 - Excluir cliente')
             print('4 - Cadastrar carro')
             print('5 - Listar carros')
-            print('6 - Gerar relatório de serviço prestado')
+            print('6 -excluir carro')
+            print('7 - Gerar relatório de serviço prestado')
             print('0 - Sair do sistema')
 
             op = int(input('Digite a opção desejada: '))    
@@ -24,6 +25,8 @@ def main():
             elif op == 5:
                 funcoes.listar_carros()
             elif op == 6:
+                funcoes.excluir_carro()
+            elif op == 7:
                 funcoes.relatorio()
             elif op == 0:
                 print('Saindo do sistema de oficina... TCHAU!')

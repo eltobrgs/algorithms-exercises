@@ -1,3 +1,4 @@
+import pprint 
 # Função para verificar se um CPF é válido
 def cpf_valido(cpf):
     # Verifica se o CPF tem 11 dígitos e se todos são números
@@ -82,17 +83,33 @@ def listar_clientes():
 
 # Função para excluir um cliente
 def excluir_cliente():
-    # Lista os clientes cadastrados
-    listar_clientes()
-    cliente_exclude = int(input('Digite o índice do cliente que deseja excluir: '))
-    if 0 < cliente_exclude <= len(lista_clientes):# se o índice fornecido for válido, excluímos o cliente da lista de clientes, funciona da mesma forma que a funçao de excluir peças
-        # Remove o cliente da lista de clientes
-        lista_clientes.pop(cliente_exclude - 1)
-        # usa o método pop para remover o cliente da lista de clientes, subtraímos 1 do índice fornecido para obter o índice correto do cliente na lista de clientes
-        print('Cliente excluído com sucesso!')
+    if len(lista_clientes) == 0:
+        print('Nenhum cliente cadastrado!')
+        return
     else:
-        print('Índice inválido!')
+        # Lista os clientes cadastrados
+        listar_clientes()
+        cliente_exclude = int(input('Digite o índice do cliente que deseja excluir: '))
+        if 0 < cliente_exclude <= len(lista_clientes):# se o índice fornecido for válido, excluímos o cliente da lista de clientes, funciona da mesma forma que a funçao de excluir peças
+            # Remove o cliente da lista de clientes
+            lista_clientes.pop(cliente_exclude - 1)
+            # usa o método pop para remover o cliente da lista de clientes, subtraímos 1 do índice fornecido para obter o índice correto do cliente na lista de clientes
+            print('Cliente excluído com sucesso!')
+        else:
+            print('Índice inválido!')
 
+def excluir_carro(): 
+    if len(carros_na_oficina) == 0:
+        print('Nenhum carro cadastrado!')
+        return
+    else:
+        listar_carros()
+        carro_exclude = int(input('Digite o índice do carro que deseja excluir: '))
+        if 0 < carro_exclude <= len(carros_na_oficina):
+            carros_na_oficina.pop(carro_exclude - 1)
+            print('Carro excluído com sucesso!')
+        else:
+            print('Índice inválido!')
 
 # Função para cadastrar um carro na oficina
 def cadastrar_carro():
@@ -148,21 +165,27 @@ def listar_carros():
 # Função para gerar o relatório de um carro
 # Função para gerar o relatório de um carro
 def relatorio():
-    # Solicita ao usuário o índice do carro que deseja ver o relatório
-    print('De qual carro deseja ver o relatório?')
-    carro_indice = int(input('Digite o índice do carro que deseja ver o relatório: '))
-
-    # Verifica se o índice fornecido é válido
-    if 0 < carro_indice <= len(carros_na_oficina):
-        # Obtém o carro correspondente ao índice fornecido
-        carro = carros_na_oficina[carro_indice - 1]
-
-        # Exibe as informações do carro e do serviço realizado
-        print(f"Carro: {carro['modelo']}, Placa: {carro['placa']}, Ano: {carro['ano']}, Cor: {carro['cor']}, Cliente: {carro['cliente']}, Descrição: {carro['descricao']}, Serviço: {carro['servico']}, Preço do serviço: {carro['preço do serviço']}")
-        print('Relatório gerado com sucesso!')
-
-        # Remove o carro da lista de carros na oficina
-        carros_na_oficina.pop(carro_indice - 1)
-        print('Serviço concluído, excluindo carro do sistema!')
+    if len(carros_na_oficina) == 0:
+        print('Nenhum carro cadastrado!')
+        return
     else:
-        print('Índice inválido!')
+    
+        # Solicita ao usuário o índice do carro que deseja ver o relatório
+        print('De qual carro deseja ver o relatório?')
+        listar_carros()
+        carro_indice = int(input('Digite o índice do carro que deseja ver o relatório: '))
+
+        # Verifica se o índice fornecido é válido
+        if 0 < carro_indice <= len(carros_na_oficina):
+            # Obtém o carro correspondente ao índice fornecido
+            carro = carros_na_oficina[carro_indice - 1]
+
+            # Exibe as informações do carro e do serviço realizado
+            pprint.pprint(f"Carro: {carro['modelo']}, Placa: {carro['placa']}, Ano: {carro['ano']}, Cor: {carro['cor']}, Cliente: {carro['cliente']}, Descrição: {carro['descricao']}, Serviço: {carro['servico']}, Preço do serviço: {carro['preço do serviço']}")
+            print('Relatório gerado com sucesso!')
+
+            # Remove o carro da lista de carros na oficina
+            carros_na_oficina.pop(carro_indice - 1)
+            print('Serviço concluído, excluindo carro do sistema!')
+        else:
+            print('Índice inválido!')

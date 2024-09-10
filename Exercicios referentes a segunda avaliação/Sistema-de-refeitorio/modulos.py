@@ -59,7 +59,7 @@ lista_alunos = []
 def cadastrar_aluno():
     nome = input('Digite o nome do aluno: ')
     cpf = input('Digite o CPF do aluno: ')
-    dia = input('Digite o dia que deseja agendar: ')
+    dia = input('Digite o dia que deseja agendar: (segunda, terça, quarta, quinta, sexta): ')
     refeicao = input('Digite a refeição que deseja agendar (ex: cafe da manhã, almoço, jantar): ')
     # peço as informações do aluno, email, telefone, cpf, dia e refeição
 

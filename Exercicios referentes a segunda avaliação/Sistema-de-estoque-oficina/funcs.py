@@ -28,7 +28,7 @@ def cpf_valido(cpf):
 
 # funçao para cadastrar peças
 def cadastrar_peça():
-    peça_adicionar = input("Digite o nome da peça: ")
+    peça_adicionar = input("Digite o nome da peça: ").capitalize()
     tipo_peça = input("Digite o tipo da peça: ")
     descricao_peça = input("Digite a descrição da peça: ")
     quantidade_adicionar = int(input("Digite a quantidade da peça: "))
@@ -57,7 +57,7 @@ def listar_peças():
 
 def pesquisar_peça(): 
     # pedimos para o usuário digitar o nome da peça que deseja pesquisar
-    peça_pesquisar = input("Digite o nome da peça que deseja pesquisar: ")
+    peça_pesquisar = input("Digite o nome da peça que deseja pesquisar: ").capitalize()
     print("Procurando peça...")
     peça_encontrada = False # criamos uma variável para verificar se a peça foi encontrada, ela começa como False e posteriormente será alterada para True se a peça for encontrada
     for peça in peças_em_estoque: #itera em cada peça dentro do estoque

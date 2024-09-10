@@ -149,3 +149,17 @@ def excluir_aluno():
         print('Índice inválido.')
 
 
+def pesquisar_aluno():
+    cpf_pesquisar = input('Digite o CPF do aluno que deseja pesquisar: ')
+    aluno_encontrado = False # crio uma variável para verificar se o aluno foi encontrado, ela começa como False e posteriormente será alterada para True se o aluno for encontrado
+    for aluno in lista_alunos: # para cada aluno na lista de alunos, verifico se o cpf do aluno é igual ao cpf que o usuário deseja pesquisar, se sim, exibo as informações do aluno e altero a variável aluno_encontrado para True
+        if aluno['cpf'] == cpf_pesquisar:
+            print('-'*50)
+            print(f"Aluno encontrado: {aluno['nome']}, CPF: {aluno['cpf']}")
+            print(f"Dia agendado: {aluno['dia']}, Refeição: {aluno['refeicao']}")
+            print('-'*50)
+            aluno_encontrado = True
+            break
+
+    if not aluno_encontrado: # se o aluno não for encontrado, a variável aluno_encontrado continuará como False e exibirei a mensagem de que o aluno não foi encontrado
+        print('Aluno não encontrado!')

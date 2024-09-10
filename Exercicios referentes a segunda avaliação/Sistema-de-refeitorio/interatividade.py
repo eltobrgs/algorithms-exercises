@@ -6,8 +6,9 @@ def main():
             print('1 - Cadastrar aluno')
             print('2 - Listar alunos')
             print('3 - Listar alunos por refeição')
-            print('4 - Excluir aluno')
-            print('5 - Sair')
+            print('4 - pesquisar aluno')
+            print('5 - Excluir aluno')
+            print('6 - Sair')
 
             op = int(input('Digite a opção desejada: '))    
 
@@ -18,8 +19,10 @@ def main():
             elif op == 3:
                 modulos.listar_alunos_por_refeicao()
             elif op == 4:
-                modulos.excluir_aluno()
+                modulos.pesquisar_aluno()
             elif op == 5:
+                modulos.excluir_aluno()
+            elif op == 6:
                 print('Saindo do sistema de refeitório... TCHAU!')
                 break
             else:

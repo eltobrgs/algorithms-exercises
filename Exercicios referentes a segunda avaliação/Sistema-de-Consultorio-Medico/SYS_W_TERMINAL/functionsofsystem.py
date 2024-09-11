@@ -52,7 +52,7 @@ def cadastrar_medico():
     limite_atendimentos = int(input("Quantos pacientes o médico pode atender por dia: "))
 
     for medico in lista_medicos:
-        if medico['credencial'] == credencial_medico:
+        if medico['credencial'] == credencial_medico: #se houver alguma credencial igual a credencial_medico, o medico ja foi cadastrado
             
             print("Médico já cadastrado no sistema!")
             
@@ -123,7 +123,7 @@ def cadastrar_paciente():
     cpf_paciente = input("Digite o CPF do paciente (somentes numeros): ")
 
     # Verifica se o CPF é válido
-    if not cpf_valido(cpf_paciente):
+    if not cpf_valido(cpf_paciente): #verifica se o cpf é valido, se não for, ele exibe a mensagem de que o cpf é invalido, ou seja, se a função cpf_valido retornar "false."
         
         print("CPF inválido, entre com um CPF válido!")
         
@@ -156,7 +156,7 @@ def cadastrar_paciente():
 def listar_pacientes():
     print("Carregando pacientes...")
     sleep(1)
-    if not lista_pacientes:
+    if not lista_pacientes: #se a lista de pacientes estiver vazia, ele exibe a mensagem de que não há pacientes cadastrados no sistema
         
         print("Nenhum paciente cadastrado no sistema!")
         
@@ -170,7 +170,7 @@ def listar_pacientes():
 
 
 def excluir_paciente():
-    listar_pacientes()
+    listar_pacientes() #chama a função listar_pacientes para exibir os pacientes cadastrados no sistema, para que o usuario possa escolher qual paciente deseja excluir, o usuario vai ter que digitar o indice do paciente que deseja excluir
 
     try:
         paciente_exclude= int(input("Qual indice do paciente que deseja excluir:"))
@@ -330,7 +330,7 @@ def pesquisar_paciente():
             paciente_encontrado = True
 
 
-            resposta = input('Deseja agendar uma consulta para esse paciente? S/N').upper()
+            resposta = input('Deseja agendar uma consulta para esse paciente? S/N').capitalize()
             if resposta == "S":
                 agendar_consulta()
             else:
@@ -351,7 +351,7 @@ def pesquisar_consulta():
             print("A consulta está agendada")
             consulta_encontrada = True
 
-
+            
             resposta = input('Deseja cancelar essa consulta? S/N').upper()
             if resposta == "S":
                 excluir_consulta()

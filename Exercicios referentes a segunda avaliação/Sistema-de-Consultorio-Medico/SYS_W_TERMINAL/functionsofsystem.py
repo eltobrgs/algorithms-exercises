@@ -123,31 +123,32 @@ def cadastrar_paciente():
     cpf_paciente = input("Digite o CPF do paciente (somentes numeros): ")
 
     # Verifica se o CPF é válido
-    if not cpf_valido(cpf_paciente): #verifica se o cpf é valido, se não for, ele exibe a mensagem de que o cpf é invalido, ou seja, se a função cpf_valido retornar "false."
-        
-        print("CPF inválido, entre com um CPF válido!")
-        
+    if cpf_valido(cpf_paciente) == "CPF inválido.":
+        print("CPF inválido!")
         return
+    # se ele for invalido retornamos da funçao
+    # se ele for valido pedimos para o usuário digitar o número do evento que deseja participar
+    else:
     
-    for paciente in lista_pacientes:
-        if paciente['cpf_paciente'] == cpf_paciente: #itera em toda a lista de pacientes, olhando especificamente para o valor atribuido a "cpf_paciente" para verificar se o paciente ja esta cadastrado, se o for igual ao cpf_paciente que esta sendo cadastrado, o paciente ja foi cadastrado
+        for paciente in lista_pacientes:
+            if paciente['cpf_paciente'] == cpf_paciente: #itera em toda a lista de pacientes, olhando especificamente para o valor atribuido a "cpf_paciente" para verificar se o paciente ja esta cadastrado, se o for igual ao cpf_paciente que esta sendo cadastrado, o paciente ja foi cadastrado
+                
+                print("Paciente já cadastrado no sistema!")
+                
+                return
             
-            print("Paciente já cadastrado no sistema!")
-            
-            return
+        email_paciente = input("Digite o email do paciente: ")
+        paciente = {
+            'nome_paciente': nome_paciente, 
+            'cpf_paciente': cpf_paciente, 
+            'email_paciente': email_paciente
+        }
         
-    email_paciente = input("Digite o email do paciente: ")
-    paciente = {
-        'nome_paciente': nome_paciente, 
-        'cpf_paciente': cpf_paciente, 
-        'email_paciente': email_paciente
-    }
-    
-    lista_pacientes.append(paciente)
-    print("Carregando...")
-    sleep(1)
-    
-    print("Paciente cadastrado com sucesso!")
+        lista_pacientes.append(paciente)
+        print("Carregando...")
+        sleep(1)
+        
+        print("Paciente cadastrado com sucesso!")
     
 
 
@@ -206,7 +207,7 @@ def verificar_limite_consultas(medico_escolhido, dia_consulta):
             medico = med # Quando o nome do médico é encontrado, ele é atribuído à variável medico. Isso permite acessar os detalhes do médico, como o limite de consultas.
             break # Quando o médico é encontrado, o laço é interrompido.
 
-    if medico and len(consultas_do_dia) <= medico['limite_atendimento']: #se o medico for diferente de None e o tamanho da lista consultas_do_dia for menor que o limite de atendimentos do medico, ele retorna True
+    if medico and len(consultas_do_dia) <= medico['limite_atendimento']-1: #se o medico for diferente de None e o tamanho da lista consultas_do_dia for menor que o limite de atendimentos do medico, ele retorna True
         return True
     else:
         
@@ -235,7 +236,7 @@ def agendar_consulta():
 
     listar_medicos()
 
-    medico_escolhido = input("Com que médico deseja se consultar: ")
+    medico_escolhido = input("Com que médico deseja se consultar: ").capitalize()
 
     medico_existe = False # criamos uma variável para verificar se o médico escolhido existe, ela começa como False e posteriormente será alterada para True se o médico for encontrado
     for medico in lista_medicos: #itera em cada medico dentro da lista, ou seja percorremos a lista de medicos para verificar se o medico ja esta cadastrado

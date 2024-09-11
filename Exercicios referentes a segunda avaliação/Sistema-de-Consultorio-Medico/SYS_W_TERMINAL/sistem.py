@@ -1,5 +1,5 @@
 # importando nossas funções do arquivo functionsofsystem.py
-import functionsofsystem
+import functionsofsystem 
 
 def main(): 
     while True: # Loop infinito
@@ -22,33 +22,33 @@ def main():
 
             print("0 - Sair do sistema")
 
-            opcao = input("Digite a opção: ")
+            opcao = int(input("Digite a opção: "))
 
-            if opcao == "1":
+            if opcao == 1:
                 functionsofsystem.cadastrar_medico()
-            elif opcao == "2":
+            elif opcao == 2:
                 functionsofsystem.excluir_medico()
-            elif opcao == "3":
+            elif opcao == 3:
                 functionsofsystem.listar_medicos()
-            elif opcao == "4":
+            elif opcao == 4:
                 functionsofsystem.pesquisar_medico()  # Corrigido
-            elif opcao == "5":
+            elif opcao == 5:
                 functionsofsystem.cadastrar_paciente()
-            elif opcao == "6":
+            elif opcao == 6:
                 functionsofsystem.excluir_paciente()
-            elif opcao == "7":
+            elif opcao == 7:
                 functionsofsystem.listar_pacientes()
-            elif opcao == "8":
+            elif opcao == 8:
                 functionsofsystem.pesquisar_paciente()  # Corrigido
-            elif opcao == "9":
+            elif opcao == 9:
                 functionsofsystem.agendar_consulta()
-            elif opcao == "10":
+            elif opcao == 10:
                 functionsofsystem.excluir_consulta()
-            elif opcao == "11":
+            elif opcao == 11:
                 functionsofsystem.listar_consultas()
-            elif opcao == "12":
+            elif opcao == 12:
                 functionsofsystem.pesquisar_consulta()  # Corrigido
-            elif opcao == "0":
+            elif opcao == 0:
                 print("Saindo do programa...")
                 break
             else:
@@ -60,3 +60,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

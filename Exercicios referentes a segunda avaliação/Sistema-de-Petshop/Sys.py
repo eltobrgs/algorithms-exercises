@@ -1,6 +1,6 @@
-import Funcs
+import Funcs #importando os modulos (funçoes)   #importando o arquivo Funcs.py, que contem as funções do sistema
 
-def main(): #função p9rincipal que chama as outras funções do sistema, é a função que inicia o sistema e a que controla o fluxo do sistema, a fução main é a função principal de um programa e geralmente a que é chamada para iniciar a execução do programa
+def main(): #função principal que chama as outras funções do sistema, é a função que inicia o sistema e a que controla o fluxo do sistema, a fução main é a função principal de um programa e geralmente a que é chamada para iniciar a execução do programa
     while True:
         try:
             Funcs.menu()
@@ -23,10 +23,9 @@ def main(): #função p9rincipal que chama as outras funções do sistema, é a 
             elif option == '0':
                 print('Saindo do sistema...')
                 break
-        except Exception as e:
-            print('Ocorreu um erro:', str(e))
+        except Exception as error:
+            print('Ocorreu um erro:', str(error))
             break
-
 
     
 if __name__ == "__main__": #se o arquivo for executado diretamente, chama a função main

@@ -57,10 +57,10 @@ vagas_ocupadas = {
 lista_alunos = []
 
 def cadastrar_aluno():
-    nome = input('Digite o nome do aluno: ')
+    nome = input('Digite o nome do aluno: ').capitalize()
     cpf = input('Digite o CPF do aluno: ')
     dia = input('Digite o dia que deseja agendar: (segunda, terça, quarta, quinta, sexta): ')
-    refeicao = input('Digite a refeição que deseja agendar (ex: cafe da manhã, almoço, jantar): ')
+    refeicao = input('Digite a refeição que deseja agendar (ex: almoço, jantar): ')
     # peço as informações do aluno, email, telefone, cpf, dia e refeição
 
     # vejo se o cpf é valido com a função que foi feita em um dos exercicios anteriores de messias
@@ -92,6 +92,7 @@ def listar_alunos():
     if len(lista_alunos) == 0: # se a quantidade de alunos na lista for igual a 0, exibimos a mensagem
         print('Nenhum aluno cadastrado!')
         return
+    
     else:# se houver alunos na lista, exibimos as informações deles com um loop iterando sobre a lista de alunos, ou seja, para cada aluno na lista de alunos, exibimos as informações dele
         print('Listando alunos...')
         print('Lista de alunos que agendaram:')
@@ -101,6 +102,7 @@ def listar_alunos():
             print(f"{indice}- Aluno: {aluno['nome']}, CPF: {aluno['cpf']}")
             print(f"Dia agendado: {aluno['dia']}, Refeição: {aluno['refeicao']}")
             print('-'*50)
+
         print('Listando total de alunos...') 
         total_alunos = len(lista_alunos) #aqui eu conto a quantidade de alunos na lista de alunos usando o método len, que retorna o tamanho da lista em numeros inteiros   
         print(f'Total de alunos que agendaram: {total_alunos}')   
@@ -108,15 +110,18 @@ def listar_alunos():
 
 
 def listar_alunos_por_refeicao():
-    refeicao = input('Digite a refeição que deseja listar (ex: cafe da manhã, almoço, jantar): ')
+    refeicao = input('Digite a refeição que deseja listar (ex: almoço, jantar): ')
     alunos_refeicao = [] # crio uma lista vazia para armazenar os alunos que agendaram a refeição escolhida
+
     for aluno in lista_alunos: # para cada aluno na lista de alunos, verifico se a refeição agendada é igual a refeição escolhida
         if aluno['refeicao'] == refeicao: # se a refeição agendada for igual a refeição escolhida, eu adiciono o aluno a lista de alunos que agendaram a refeição escolhida
             alunos_refeicao.append(aluno)
+
     if len(alunos_refeicao) == 0:
         # se a quantidade de alunos na lista de alunos que agendaram a refeição escolhida for igual a 0, exibo a mensagem, ou seja, se nenhum aluno agendou a refeição escolhida, exibo a mensagem
         print('Nenhum aluno agendou essa refeição!')
         return
+    
     else: # se houver alunos na lista de alunos que agendaram a refeição escolhida, exibo as informações deles
         print(f'Listando alunos que agendaram {refeicao}...')
         for aluno in alunos_refeicao: # para cada aluno na lista de alunos que agendaram a refeição escolhida, exibo as informações dele
@@ -135,6 +140,7 @@ def excluir_aluno():
     listar_alunos()
 
     aluno_exclude = int(input('Digite o índice do aluno que deseja excluir: '))
+
     if 0 < aluno_exclude <= len(lista_alunos): # Verifica se o índice fornecido é válido, no caso de um índice inválido ele existe entre 0 e o tamanho da lista de alunos
         aluno_exclude -= 1 # Subtrai 1 para alinhar com o índice da lista, pois o índice fornecido pelo usuário começa em 1, mas o índice da lista começa em 0
         # Atualiza a quantidade de vagas ocupadas
@@ -143,7 +149,7 @@ def excluir_aluno():
         vagas_ocupadas[dia][refeicao] -= 1  # subtraímos 1 da quantidade de vagas ocupadas para o dia e refeição do aluno que está sendo excluído, pois a vaga que ele ocupava foi liberada
 
         # Remove o aluno da lista
-        lista_alunos.pop(aluno_exclude) # usa o método pop para remover o aluno da lista de alunos, subtraímos 1 do índice fornecido para obter o índice correto do aluno na lista de alunos
+        lista_alunos.pop(aluno_exclude -1) # usa o método pop para remover o aluno da lista de alunos, subtraímos 1 do índice fornecido para obter o índice correto do aluno na lista de alunos
         print('Aluno excluído com sucesso!')
     else:
         print('Índice inválido.')
@@ -152,6 +158,7 @@ def excluir_aluno():
 def pesquisar_aluno():
     cpf_pesquisar = input('Digite o CPF do aluno que deseja pesquisar: ')
     aluno_encontrado = False # crio uma variável para verificar se o aluno foi encontrado, ela começa como False e posteriormente será alterada para True se o aluno for encontrado
+    
     for aluno in lista_alunos: # para cada aluno na lista de alunos, verifico se o cpf do aluno é igual ao cpf que o usuário deseja pesquisar, se sim, exibo as informações do aluno e altero a variável aluno_encontrado para True
         if aluno['cpf'] == cpf_pesquisar:
             print('-'*50)

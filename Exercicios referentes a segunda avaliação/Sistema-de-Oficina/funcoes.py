@@ -1,4 +1,3 @@
-import pprint 
 # Função para verificar se um CPF é válido
 def cpf_valido(cpf):
     # Verifica se o CPF tem 11 dígitos e se todos são números
@@ -49,7 +48,7 @@ servicos = []
 
 # Função para cadastrar um cliente
 def cadastrar_cliente():
-    nome = input('Digite o nome do cliente: ')
+    nome = input('Digite o nome do cliente: ').capitalize() # usamos o método capitalize para garantir que o nome do cliente seja exibido com a primeira letra em maiúsculo
     email = input('Digite o email do cliente: ')
     telefone = input('Digite o telefone do cliente: ')
     cpf = input('Digite o cpf do cliente: ')
@@ -76,7 +75,7 @@ def listar_clientes():
     else:
         print('Listando clientes...')
         # Enumera os clientes e exibe suas informações
-        for indice, cliente in enumerate(lista_clientes, start=1):
+        for indice, cliente in enumerate(lista_clientes, start=1): 
             # usamos o método enumerate para obter o índice do cliente na lista e exibimos as informações do cliente, usamos o start=1 para começar a contagem do índice em 1
             print(f" {indice}- Cliente: {cliente['nome']}, Email: {cliente['email']}, Telefone: {cliente['telefone']}, CPF: {cliente['cpf']}")
 
@@ -117,7 +116,7 @@ def cadastrar_carro():
     modelo = input('Digite o modelo do carro: ')
     ano = input('Digite o ano do carro: ')
     cor = input('Digite a cor do carro: ')
-    nome_cliente = input('Digite o nome do cliente: ')
+    nome_cliente = input('Digite o nome do cliente: ').capitalize()
 
     descricao = input('Digite a descrição do problema: ')
     servico = input('Digite o serviço a ser realizado: ')
@@ -181,7 +180,7 @@ def relatorio():
             carro = carros_na_oficina[carro_indice - 1]
 
             # Exibe as informações do carro e do serviço realizado
-            pprint.pprint(f"Carro: {carro['modelo']}, Placa: {carro['placa']}, Ano: {carro['ano']}, Cor: {carro['cor']}, Cliente: {carro['cliente']}, Descrição: {carro['descricao']}, Serviço: {carro['servico']}, Preço do serviço: {carro['preço do serviço']}")
+            print(f"Carro: {carro['modelo']}, Placa: {carro['placa']}, Ano: {carro['ano']}, Cor: {carro['cor']}, Cliente: {carro['cliente']}, Descrição: {carro['descricao']}, Serviço: {carro['servico']}, Preço do serviço: {carro['preço do serviço']}")
             print('Relatório gerado com sucesso!')
 
             # Remove o carro da lista de carros na oficina

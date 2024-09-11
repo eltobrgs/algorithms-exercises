@@ -24,7 +24,7 @@ lista_agendamentos = []
 
 # essa função vai cadastrar um serviço no catalogo de serviços caso voce queira adicionar um novo serviço que o petshop vá a oferecer
 def catalogar_serv():
-    serv = input('Digite o nome do serviço: ').capitalize()
+    serv = input('Digite o nome do serviço: ').capitalize() #capitalize é um metodo que deixa a primeira letra da string em maiuscula
     preco = float(input('Digite o preço do serviço: '))
     descricao = input('Digite a descrição do serviço: ')
     # serv é o nome do serviço, preco é o preço do serviço e descricao é a descrição do serviço, vou usar esses valores para criar um dicionario que vai ser adicionado a lista_serv
@@ -53,7 +53,7 @@ def cadastrar_pet():
     # exatamente a mesma logica do cadastro de serviço, só que agora para o cadastro de pets
     dono= input('Digite o nome do dono do pet: ').capitalize()
     nome = input('Digite o nome do pet: ').capitalize()
-    raca = input('Digite a raça do pet: ')
+    raca = input('Digite a raça do pet: ').capitalize()
     idade = int(input('Digite a idade do pet: '))
     pet = {'dono': dono, 'nome': nome, 'raca': raca, 'idade': idade}
     lista_pets.append(pet)
@@ -62,7 +62,7 @@ def cadastrar_pet():
 
 def listar_pets():
     # extamente a mesma logica do listar serviços, só que agora para listar os pets
-    if len(lista_pets) == 0:
+    if len(lista_pets) == 0: 
         print('Nenhum pet cadastrado!')
         return
     else:
@@ -72,7 +72,7 @@ def listar_pets():
             print(f" {indice}- Pet: {pet['nome']}, Raça: {pet['raca']}, Idade: {pet['idade']}")
 
 def excluir_pet():
-    listar_pets()
+    listar_pets() #chama a função de listar pets
     pet_exclude = int(input('Digite o indice do pet que deseja excluir: '))
     lista_pets.pop(pet_exclude - 1) #.pop é um metodo que remove o item de uma lista dado o seu indice, o indice é passado como argumento para o metodo .pop 
     print('Pet excluido com sucesso!')
@@ -87,8 +87,8 @@ def agendar_servico():
     data = input('Digite a data do serviço: ')
     hora = input('Digite a hora do serviço: ')
 
-    for pet in lista_pets:
-        if pet['nome'] == pet:
+    for pet in lista_pets: # para cada pet na lista de pets, ele verifica se o nome do pet é igual ao nome do pet que o usuario digitou
+        if pet['nome'] == pet: # se o nome do pet esticer na lista de pets, o pet foi encontrado
             print('Pet encontrado!')
             break
 
@@ -100,7 +100,7 @@ def agendar_servico():
 
 
     # mesma logica do pet, só que agora para o serviço
-    for serv in lista_serv:
+    for serv in lista_serv: # para cada serviço na lista de serviços, ele verifica se o nome do serviço é igual ao nome do serviço que o usuario digitou, mesma logica do pet
         if serv['serv'] == serv:
             print('Serviço encontrado!')
             break
@@ -127,8 +127,9 @@ def listar_agendamentos():
             indice = lista_agendamentos.index(agendamento) + 1 # o indice é o numero do agendamento na lista, eu adicionar +1 para começar do 1 e não do 0, ja que na vida real não existe o indice 0
             print(f"{indice}- Pet: {agendamento['pet']}, Serviço: {agendamento['serv']}, Data: {agendamento['data']}, Hora: {agendamento['hora']}")
             #clary mel, eu escervi a explicaçao umas 30000 vezes, se vc nao entendeu, bata nessa tecla, vou explicar bem direitinho na aula
+
 def cancelar_servico():
-    listar_agendamentos()
+    listar_agendamentos() #chama a função de listar agendamentos para o usuario ver os agendamentos que ele fez
     servico_exclude = int(input('Digite o indice do serviço que deseja cancelar: '))
     lista_agendamentos.pop(servico_exclude - 1)
     print('Serviço cancelado com sucesso!')

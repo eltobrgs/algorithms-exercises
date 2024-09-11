@@ -1,8 +1,8 @@
 # importando nossas funções do arquivo functionsofsystem.py
 import functionsofsystem
 
-def main():
-    while True:
+def main(): 
+    while True: # Loop infinito
         try:
             print("\n=== Sistema de Controle de Consultas ===")
             print("1 - Cadastrar médico")

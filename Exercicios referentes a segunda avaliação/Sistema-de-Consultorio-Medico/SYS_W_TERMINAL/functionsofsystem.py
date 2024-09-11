@@ -46,7 +46,7 @@ def cpf_valido(cpf):
 # Função para cadastrar médico 
 # feito em grupo na sala mas modificado por mim, pensando em alguma situaçao que alguem tente cadastrar um medico que ja esta cadastrado
 def cadastrar_medico():
-    nome_medico = input("Digite o nome do médico: ")
+    nome_medico = input("Digite o nome do médico: ").capitalize() #capitalize é um metodo que converte a primeira letra de uma string em maiúscula
     especialidade = input("Digite a especialidade: ")
     credencial_medico = input("Digite a credencial do médico: ")
     limite_atendimentos = int(input("Quantos pacientes o médico pode atender por dia: "))
@@ -59,7 +59,7 @@ def cadastrar_medico():
             return
 
     medico = {
-        'nome': "DR."+nome_medico,
+        'nome': nome_medico,
         'credencial': credencial_medico,
         'especialidade': especialidade,
         'limite_atendimento': limite_atendimentos
@@ -99,14 +99,16 @@ def listar_medicos():
 
 def excluir_medico():
     listar_medicos()
+
     try:
         medico_exclude= int(input("Qual indice do medico que deseja excluir:"))
         if medico_exclude < 0 or medico_exclude > len(lista_medicos):
             print("Indice invalido")
             return 
+        
         else:
             lista_medicos.pop(medico_exclude - 1) #.pop é um metodo que remove o item de uma lista dado o seu indice, o indice é passado como argumento para o metodo .pop
-            
+            # o -1 é para que o indice seja o mesmo que o usuario digitou, pois o indice começa em 0
             print("Medico excluido com sucesso!")
             
 
@@ -117,7 +119,7 @@ def excluir_medico():
 # Função para cadastrar paciente
 # feito em grupo na sala
 def cadastrar_paciente():
-    nome_paciente = input("Digite o nome do paciente: ")
+    nome_paciente = input("Digite o nome do paciente: ").capitalize() #capitalize é um metodo que converte a primeira letra de uma string em maiúscula
     cpf_paciente = input("Digite o CPF do paciente (somentes numeros): ")
 
     # Verifica se o CPF é válido
@@ -175,7 +177,6 @@ def excluir_paciente():
         if paciente_exclude < 0 or paciente_exclude > len(lista_pacientes):
             
             print("Indice invalido")
-            print('-'*50)
             return 
         else:
             lista_pacientes.pop(paciente_exclude - 1)
@@ -205,7 +206,7 @@ def verificar_limite_consultas(medico_escolhido, dia_consulta):
             medico = med # Quando o nome do médico é encontrado, ele é atribuído à variável medico. Isso permite acessar os detalhes do médico, como o limite de consultas.
             break # Quando o médico é encontrado, o laço é interrompido.
 
-    if medico and len(consultas_do_dia) < medico['limite_atendimento']: #se o medico for diferente de None e o tamanho da lista consultas_do_dia for menor que o limite de atendimentos do medico, ele retorna True
+    if medico and len(consultas_do_dia) <= medico['limite_atendimento']: #se o medico for diferente de None e o tamanho da lista consultas_do_dia for menor que o limite de atendimentos do medico, ele retorna True
         return True
     else:
         
@@ -216,7 +217,7 @@ def verificar_limite_consultas(medico_escolhido, dia_consulta):
 # Função para agendar consulta
 # feito em grupo na sala
 def agendar_consulta():
-    nome_paciente = input("Digite o nome do paciente: ")
+    nome_paciente = input("Digite o nome do paciente: ").capitalize() #capitalize é um metodo que converte a primeira letra de uma string em maiúscula
     cpf_paciente = input("Digite o CPF do paciente (somentes numeros): ")
 
     # nova mudança: verificar se o paciente já está cadastrado 
@@ -227,6 +228,9 @@ def agendar_consulta():
             break
 
     if not paciente_cadastrado:
+        print("Paciente não cadastrado no sistema!")
+        print("Por favor, cadastre o paciente antes de agendar a consulta.")
+        print("Redirecionando para o cadastro de paciente... Digite as credencias novamente")
         cadastrar_paciente()
 
     listar_medicos()
@@ -293,7 +297,7 @@ def excluir_consulta():
         print("Digite apenas o indice, não o nome do paciente, ou qualquer outro cpf na lista")
 
 def pesquisar_medico():
-    nome_medico = input("Digite o nome do médico que deseja pesquisar: ")
+    nome_medico = input("Digite o nome do médico que deseja pesquisar: ").capitalize() #capitalize é um metodo que converte a primeira letra de uma string em maiúscula
     print("Procurando médico...")
     sleep(1)
     medico_encontrado = False # criamos uma variável para verificar se o médico foi encontrado, ela começa como False e posteriormente será alterada para True se o médico for encontrado
@@ -315,7 +319,7 @@ def pesquisar_medico():
         print("Médico não encontrado!")
 
 def pesquisar_paciente():
-    nome_paciente = input("Digite o nome do paciente que deseja pesquisar: ")
+    nome_paciente = input("Digite o nome do paciente que deseja pesquisar: ").capitalize() #capitalize é um metodo que converte a primeira letra de uma string em maiúscula
     print("Procurando paciente...")
     sleep(1)
     paciente_encontrado = False
@@ -337,7 +341,7 @@ def pesquisar_paciente():
         print("Paciente não encontrado!")
 
 def pesquisar_consulta():
-    cpf_paciente = input("Digite o CPF do paciente que deseja pesquisar: ")
+    cpf_paciente = input("Digite o CPF do paciente que marcou a consulta: ")
     print("Procurando consulta...")
     sleep(1)
     consulta_encontrada = False

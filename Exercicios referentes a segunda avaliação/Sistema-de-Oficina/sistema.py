@@ -8,7 +8,7 @@ def main():
             print('3 - Excluir cliente')
             print('4 - Cadastrar carro')
             print('5 - Listar carros')
-            print('6 -excluir carro')
+            print('6 - Excluir carro')
             print('7 - Gerar relatório de serviço prestado')
             print('0 - Sair do sistema')
 
@@ -30,7 +30,7 @@ def main():
                 funcoes.relatorio()
             elif op == 0:
                 print('Saindo do sistema de oficina... TCHAU!')
-                break
+                break 
             else:
                 print('Opção inválida!')
         except ValueError:

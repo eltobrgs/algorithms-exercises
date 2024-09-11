@@ -1,5 +1,6 @@
-lista_eventos = []
-lista_participantes = []
+lista_eventos = [] #criamos uma lista vazia para armazenar os eventos
+lista_participantes = [] #criamos uma lista vazia para armazenar os participantes
+
 
 def cpf_valido(cpf):
     if len(cpf) != 11 or not cpf.isdigit():
@@ -21,7 +22,7 @@ def cpf_valido(cpf):
             return "CPF inválido."
 
 def cadastrar_evento():
-    nome_evento = input("Digite o nome do evento: ")
+    nome_evento = input("Digite o nome do evento: ").capitalize()
     descricao_evento = input("Digite a descrição do evento: ")
     nome_organizador = input("Digite o nome do organizador: ")
     cpf_organizador = input("Digite o CPF do organizador: ")
@@ -67,6 +68,7 @@ def listar_eventos():
         for i, evento in enumerate(lista_eventos, start=1):
             # usamos o método enumerate para obter o índice do evento na lista e exibimos as informações do evento, usamos o start=1 para começar a contagem do índice em 1
             # se houver eventos na lista, exibimos as informações deles com um loop iterando sobre a lista de eventos, ou seja, para cada evento na lista de eventos, exibimos as informações dele
+            print("-"*60)
             print(f"{i}-Evento:{evento['nome']}")
             print(f"Organizador: {evento['organizador']}")
             print(f"CPF do organizador: {evento['cpf_organizador']}")
@@ -75,6 +77,7 @@ def listar_eventos():
             print(f"Local: {evento['local']}")
             print(f"Vagas disponíveis: {evento['vagas']}")
             print("")
+            print("-"*60)
 
 
 
@@ -182,21 +185,21 @@ def listar_participante():
             return
         else:
             print('participante nao encontrado na lista de participantes')
+            return
 
 def listar_evento():
-    nome_evento = input("Digite o nome do evento: ")
-    # pedimos para o usuário digitar o cpf do participante para exibir as informações dele
-    for evento in lista_eventos:
-        if nome_evento in [evento['nome']]:
-            print("evento encontrado:", evento["nome"])
+    nome_evento = input("Digite o nome do evento: ").capitalize() #pedimos para o usuário digitar o nome do evento para exibir as informações dele
+    for evento in lista_eventos: #iteramos sobre a lista de eventos
+        if nome_evento in [evento['nome']]: #se o nome do evento estiver na lista de eventos, exibimos as informações do evento
+            print("evento encontrado:", evento["nome"]) 
 
-            if evento['vagas'] > 0:
-                print(f"Vagas disponíveis: {evento['vagas']}") 
+            if evento['vagas'] > 0: # Verificar se há vagas disponíveis
+                print(f"Vagas disponíveis: {evento['vagas']}")  #exibimos a quantidade de vagas disponíveis
                 
-                resp= input("Gostaria de se inscrever no evento? S/N").capitalize()
-                if resp =="S":
+                resp= input("Gostaria de se inscrever no evento? S/N").capitalize() #é um metodo que deixa a primeira letra maiuscula
+                if resp =="S": #se a resposta for S, chamamos a função cadastrar_participante
                     cadastrar_participante()
-                else:
+                else: #se a resposta for N, exibimos a mensagem
                     print("OK!")
                     print('saindo do sistema...' )
                     break

@@ -1,7 +1,7 @@
-import modulos
+import modulos # importando o arquivo modulos.py, onde se localiza as funções do sistema 
 
-def main():
-    while True:
+def main(): # Função principal do sistema, que controla o fluxo de execuçao das funções, ela sempre é a primeira a ser chamada, pois é a principal
+    while True: #loop infinito para manter o sistema em execução
         try:
             print('1 - Cadastrar aluno')
             print('2 - Listar alunos')
@@ -24,7 +24,7 @@ def main():
                 modulos.excluir_aluno()
             elif op == 6:
                 print('Saindo do sistema de refeitório... TCHAU!')
-                break
+                break #tag em python que quebra a execuçao do codigo, ou seja, sai do loop
             else:
                 print('Opção inválida!')
         except ValueError:

@@ -20,6 +20,8 @@ def main(): #função principal que chama as outras funções do sistema, é a f
                 Funcs.listar_agendamentos()
             elif option == '7':
                 Funcs.cancelar_servico()
+            elif option == '8':
+                    Funcs.relatoriodepets()
             elif option == '0':
                 print('Saindo do sistema...')
                 break

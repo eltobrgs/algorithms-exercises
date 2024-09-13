@@ -7,6 +7,7 @@ def menu():
     print('5 - agendar serviço')
     print('6 - listar agendamentos')
     print('7 - cancelar serviço')
+    print('8 - relatório de serviços')
     print('0 - sair do sistema')
 
 # essa lista vai armazenar os serviços cadastrados, no caso os serviços que o petshop oferece para os clientes, como banho, tosa, etc
@@ -79,36 +80,35 @@ def excluir_pet():
     
 
 def agendar_servico():
-    listar_pets()
+    listar_pets() 
     listar_serv()
 
-    pet = input('Digite o nome do pet: ').capitalize()
-    serv = input('Digite o serviço desejado: ').capitalize()
+    nome_pet = input('Digite o nome do pet: ').capitalize()
+    nome_serv = input('Digite o serviço desejado: ').capitalize()
     data = input('Digite a data do serviço: ')
     hora = input('Digite a hora do serviço: ')
 
-    for pet in lista_pets: # para cada pet na lista de pets, ele verifica se o nome do pet é igual ao nome do pet que o usuario digitou
-        if pet['nome'] == pet: # se o nome do pet esticer na lista de pets, o pet foi encontrado
+    pet_encontrado = None
+    for pet in lista_pets:  # para cada pet na lista de pets, ele verifica se o nome do pet é igual ao nome do pet que o usuario digitou
+        if pet['nome'] == nome_pet:  # se o nome do pet estiver na lista de pets, o pet foi encontrado
+            pet_encontrado = pet
             print('Pet encontrado!')
             break
-
-        # se o nome do pet esticer na lista de pets, o pet foi encontrado, se não, o pet não foi encontrado
     else:
         print('Pet não encontrado!')
         return
-     # se o pet não foi encontrado, a função é encerrada
 
-
-    # mesma logica do pet, só que agora para o serviço
-    for serv in lista_serv: # para cada serviço na lista de serviços, ele verifica se o nome do serviço é igual ao nome do serviço que o usuario digitou, mesma logica do pet
-        if serv['serv'] == serv:
+    serv_encontrado = None
+    for serv in lista_serv:  # para cada serviço na lista de serviços, ele verifica se o nome do serviço é igual ao nome do serviço que o usuario digitou
+        if serv['serv'] == nome_serv:
+            serv_encontrado = serv
             print('Serviço encontrado!')
             break
     else:
         print('Serviço não encontrado!')
         return
-    
-    agendamento= {'pet': pet, 'serv': serv, 'data': data, 'hora': hora}
+
+    agendamento = {'pet': pet_encontrado['nome'], 'serv': serv_encontrado['serv'], 'data': data, 'hora': hora}
     lista_agendamentos.append(agendamento)
     # pega as informações do pet, serviço, data e hora e adiciona a lista de agendamentos
     # lembrando que a lista de agendamentos é uma lista de dicionarios, cada dicionario é um agendamento
@@ -117,19 +117,55 @@ def agendar_servico():
     print('Agendamento realizado com sucesso!')
 
 
+
 def listar_agendamentos():
-    if len(lista_agendamentos) == 0: # se a lista de agendamentos estiver vazia, exibe a mensagem
+    if len(lista_agendamentos) == 0:  # se a lista de agendamentos estiver vazia, exibe a mensagem
         print('Nenhum agendamento realizado!')
         return
-    else : # se a lista de agendamentos não estiver vazia, ele exibe a mensagem e percorre a lista de agendamentos
+    else:  # se a lista de agendamentos não estiver vazia, ele exibe a mensagem e percorre a lista de agendamentos
         print('Listando agendamentos...')
-        for agendamento in lista_agendamentos: # para cada agendamento na lista de agendamentos, ele exibe o nome do pet, o serviço, a data e a hora
-            indice = lista_agendamentos.index(agendamento) + 1 # o indice é o numero do agendamento na lista, eu adicionar +1 para começar do 1 e não do 0, ja que na vida real não existe o indice 0
+        for agendamento in lista_agendamentos:  # para cada agendamento na lista de agendamentos, ele exibe o nome do pet, o serviço, a data e a hora
+            indice = lista_agendamentos.index(agendamento) + 1  # o indice é o numero do agendamento na lista, eu adicionar +1 para começar do 1 e não do 0, ja que na vida real não existe o indice 0
             print(f"{indice}- Pet: {agendamento['pet']}, Serviço: {agendamento['serv']}, Data: {agendamento['data']}, Hora: {agendamento['hora']}")
-            #clary mel, eu escervi a explicaçao umas 30000 vezes, se vc nao entendeu, bata nessa tecla, vou explicar bem direitinho na aula
+
 
 def cancelar_servico():
     listar_agendamentos() #chama a função de listar agendamentos para o usuario ver os agendamentos que ele fez
     servico_exclude = int(input('Digite o indice do serviço que deseja cancelar: '))
     lista_agendamentos.pop(servico_exclude - 1)
     print('Serviço cancelado com sucesso!')
+
+
+def relatoriodepets():
+    if len(lista_agendamentos) == 0:
+        print('Nenhum agendamento cadastrado!')
+        return
+    else:
+    
+        # Solicita ao usuário o índice do agendamento que deseja ver o relatório
+        print('De qual agendamento deseja ver o relatório?')
+        listar_agendamentos()
+        agend_indice = int(input('Digite o índice do agendamento que deseja ver o relatório: '))
+
+        # Verifica se o índice fornecido é válido
+        if 0 < agend_indice <= len(lista_agendamentos):
+            # Obtém o agendamento correspondente ao índice fornecido
+            agendamento = lista_agendamentos[agend_indice - 1]
+
+            # Exibe as informações do agendamento
+            print(f"Pet: {agendamento['pet']}, Serviço: {agendamento['serv']}, Data: {agendamento['data']}, Hora: {agendamento['hora']}")
+            for serv in lista_serv:
+                if serv['serv'] == agendamento['serv']:
+                    print(f'O preço do serviço é {serv["preco"]}')
+                    break
+            print('Relatório gerado com sucesso!')
+            
+
+            # Remove o agendamento da lista de agendamentos
+            lista_agendamentos.pop(agend_indice - 1)
+            print('Serviço concluído, excluindo do sistema!')
+        else:
+            print('Índice inválido!')
+
+
+    
